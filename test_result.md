@@ -222,27 +222,33 @@ frontend:
 
   - task: "Create Supabase hook for real tables"
     implemented: true
-    working: "NA"
+    working: false
     file: "frontend/src/hooks/useSupabaseTables.ts"
-    stuck_count: 0
+    stuck_count: 1
     priority: "critical"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Created hook that queries tavoli table with user_id filter and provides CRUD operations including delete"
+      - working: false
+        agent: "testing"
+        comment: "❌ CRITICAL DATABASE SCHEMA MISMATCH: The useSupabaseTables hook queries 'SELECT * FROM tavoli WHERE user_id = current_user' but the tavoli table schema in types.ts shows NO user_id column! Table schema has: id, capacita_max, created_at, lato, nome_tavolo. Missing user_id column will cause all queries to fail. RLS (Row Level Security) cannot work without user_id column. This is a blocking issue that prevents table functionality from working."
 
   - task: "Fix table deletion functionality"
     implemented: true
-    working: "NA"
+    working: false
     file: "frontend/src/components/TablePlanner.tsx"
-    stuck_count: 0
+    stuck_count: 1
     priority: "critical"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Updated table deletion to work with real database, includes confirmation dialog and guest removal"
+      - working: false
+        agent: "testing"
+        comment: "❌ CANNOT FUNCTION: Table deletion depends on useSupabaseTables hook which has critical schema mismatch. The tavoli table is missing user_id column required for user-specific operations. Delete functionality will fail because queries cannot filter by user_id. Component implementation is correct but underlying database schema is incompatible."
 
 metadata:
   created_by: "main_agent"
