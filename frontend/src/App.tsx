@@ -39,6 +39,7 @@ const App = () => (
             } />
             <Route path="/tavoli-demo" element={<TablePlannerDemo />} />
             <Route path="/tavoli-real" element={<TablePlannerReal />} />
+            <Route path="/database-fix" element={<DatabaseSchemaFix />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
