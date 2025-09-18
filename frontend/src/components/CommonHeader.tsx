@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import NotificationPanel from "@/components/NotificationPanel";
 
 interface CommonHeaderProps {
   showAuthButtons?: boolean;
