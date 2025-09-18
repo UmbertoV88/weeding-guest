@@ -167,19 +167,10 @@ const TablePlanner: React.FC = () => {
     });
   }, [toast, updateGuestTableAssignment]);
 
-  // Handle table updates - Aggiornato per usare database reale
+  // Handle table updates - Usa direttamente il database
   const handleTableUpdate = useCallback(async (tableId: string, updates: Partial<AdvancedTable>) => {
-    // Aggiorna immediatamente lo stato locale per UI reattiva
-    setTables(prev => prev.map(table => 
-      table.id === tableId 
-        ? { ...table, ...updates }
-        : table
-    ));
-
-    // Aggiorna nel database (solo per certi campi)
-    if (updates.name || updates.seats) {
-      await updateDbTable(tableId, updates);
-    }
+    // Aggiorna direttamente nel database - il hook aggiornerà automaticamente i dati
+    await updateDbTable(tableId, updates);
   }, [updateDbTable]);
 
   // Handle table creation - Aggiornato per usare database reale
