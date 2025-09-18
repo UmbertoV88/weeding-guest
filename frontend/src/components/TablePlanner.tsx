@@ -405,7 +405,8 @@ const TablePlanner: React.FC = () => {
                           </div>
                         </div>
                         <div className="text-xs text-gray-500 bg-blue-50 p-2 rounded border border-blue-200">
-                          💡 Ospiti recuperati dal database con confermato = TRUE
+                          💡 Ospiti: SELECT * FROM invitati WHERE confermato = TRUE<br/>
+                          🏗️ Tavoli: SELECT * FROM tavoli WHERE user_id = current_user
                         </div>
                       </div>
                     </div>
