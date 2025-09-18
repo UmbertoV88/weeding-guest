@@ -166,17 +166,17 @@ backend:
         comment: "CRUD operations for tables, venues, and guest assignments"
 
 frontend:
-  - task: "Convert TablePlanner.jsx to TypeScript"
-    implemented: false
+  - task: "Fix TablePlanner to use real Supabase data"
+    implemented: true
     working: "NA"
     file: "frontend/src/components/TablePlanner.tsx"
     stuck_count: 0
-    priority: "high"
-    needs_retesting: false
+    priority: "critical"
+    needs_retesting: true
     status_history:
       - working: "NA"
         agent: "main"
-        comment: "Convert main component from JS to TS and integrate with existing app"
+        comment: "Fixed bug: now uses useSupabaseConfirmedGuests hook to fetch real data from invitati table with confermato = TRUE"
 
   - task: "Convert FloorPlanCanvas.jsx to TypeScript"
     implemented: false
