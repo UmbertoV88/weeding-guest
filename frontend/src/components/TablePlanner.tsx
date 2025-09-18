@@ -357,7 +357,15 @@ const TablePlanner: React.FC = () => {
                     />
                   </TabsContent>
                   
-                  <TabsContent value="settings" className="m-0 p-4">
+                  <TabsContent value="suggestions" className="m-0 p-4">
+                    <SmartTableSuggestions
+                      guests={guests}
+                      tables={tables}
+                      onApplySuggestion={handleGuestAssignment}
+                    />
+                  </TabsContent>
+                  
+                  <TabsContent value="stats" className="m-0 p-4">
                     <div className="space-y-4">
                       <div>
                         <Label className="text-sm font-medium">Nome Venue</Label>
@@ -368,30 +376,11 @@ const TablePlanner: React.FC = () => {
                         />
                       </div>
                       <Separator />
-                      <div className="space-y-2">
-                        <h4 className="font-medium text-sm">Statistiche Ospiti</h4>
-                        <div className="grid grid-cols-2 gap-2 text-xs">
-                          <div className="p-2 bg-gray-50 rounded">
-                            <div className="font-medium">{guests.length}</div>
-                            <div className="text-gray-600">Ospiti totali</div>
-                          </div>
-                          <div className="p-2 bg-gray-50 rounded">
-                            <div className="font-medium">{assignedGuests.length}</div>
-                            <div className="text-gray-600">Assegnati</div>
-                          </div>
-                          <div className="p-2 bg-gray-50 rounded">
-                            <div className="font-medium">{tables.length}</div>
-                            <div className="text-gray-600">Tavoli</div>
-                          </div>
-                          <div className="p-2 bg-red-50 rounded border border-red-200">
-                            <div className="font-medium text-red-700">{unassignedGuests.length}</div>
-                            <div className="text-red-600">Da assegnare</div>
-                          </div>
-                        </div>
-                        <div className="text-xs text-gray-500 bg-blue-50 p-2 rounded border border-blue-200">
-                          💡 Sistema di gestione tavoli integrato con database
-                        </div>
-                      </div>
+                      <TableStatsDashboard
+                        guests={guests}
+                        tables={tables}
+                        categories={defaultGuestCategories}
+                      />
                     </div>
                   </TabsContent>
                 </Tabs>
