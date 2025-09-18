@@ -123,26 +123,7 @@ const mockVenue: Venue = {
   name: "Villa Rosa - Sala Principale",
   width: 1000,
   height: 600,
-  elements: [
-    {
-      id: "dancefloor",
-      type: "dancefloor",
-      x: 100,
-      y: 400,
-      width: 200,
-      height: 150,
-      label: "Pista da ballo"
-    },
-    {
-      id: "stage",
-      type: "stage",
-      x: 50,
-      y: 450,
-      width: 100,
-      height: 50,
-      label: "Palco"
-    }
-  ],
+  elements: [], // Rimossi palco e pista da ballo
   user_id: "user_12345"
 };
 
