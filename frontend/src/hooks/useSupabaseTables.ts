@@ -100,6 +100,7 @@ export const useSupabaseTables = () => {
         y: tableData.y,
         assignedGuests: [],
         user_id: user.id,
+        lato: (data.lato as 'sposo' | 'sposa' | 'centro') || 'centro',
         created_at: data.created_at
       };
 
