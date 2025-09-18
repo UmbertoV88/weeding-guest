@@ -42,6 +42,11 @@ const App = () => (
                   <TablePlanner />
                 </ProtectedRoute>
               } />
+              <Route path="/qr-manager" element={
+                <ProtectedRoute>
+                  <QRManager />
+                </ProtectedRoute>
+              } />
               <Route path="/tavoli-demo" element={<TablePlannerDemo />} />
               <Route path="/tavoli-real" element={<TablePlannerReal />} />
               <Route path="/tavoli-test" element={<TablePlannerTest />} />
