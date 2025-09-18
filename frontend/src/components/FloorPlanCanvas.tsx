@@ -191,11 +191,9 @@ const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
     });
     
     // Draw tables
-    console.log(`🎨 Disegnando ${tables.length} tavoli nel canvas`);
     tables.forEach(table => {
       const isSelected = selectedTable?.id === table.id;
       const isDragged = draggedTable?.id === table.id;
-      console.log(`  📋 Disegnando tavolo: ${table.name} at (${table.x}, ${table.y})`);
       drawTable(ctx, table, isSelected, isDragged);
     });
     
