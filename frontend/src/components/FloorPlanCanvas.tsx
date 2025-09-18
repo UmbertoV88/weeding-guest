@@ -283,15 +283,8 @@ const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
 
   // Redraw when dependencies change
   useEffect(() => {
-    console.log('🔄 Canvas redraw triggered by draw function change');
     draw();
   }, [draw]);
-
-  // Force redraw specifically when tables change
-  useEffect(() => {
-    console.log('🔄 Canvas force redraw due to tables change');
-    draw();
-  }, [tables, draw]);
 
   return (
     <div ref={containerRef} className="relative w-full h-96 lg:h-[600px] bg-gray-50">
