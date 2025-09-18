@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Integrate new advanced table seating system with interactive canvas, drag & drop functionality, and visual guest management to replace current table section"
+user_problem_statement: "Fix bug: Table planner must show ONLY confirmed guests from Supabase database (invitati table, confermato = TRUE) instead of mock data"
 
 backend:
   - task: "Basic API endpoints (root, status checks)"
