@@ -32,7 +32,7 @@ const realDatabaseGuests: TableGuest[] = [
     id: "real_002", 
     name: "Anna Bianchi",
     email: "",
-    category: "Famiglia della sposa",
+    category: "Famiglia di lei",
     dietaryRestrictions: "Senza glutine",
     tableId: undefined,
     seatNumber: undefined,
