@@ -307,18 +307,22 @@ const TablePlanner: React.FC = () => {
               </CardHeader>
               <CardContent className="p-0">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                  <TabsList className="grid w-full grid-cols-3 rounded-none">
-                    <TabsTrigger value="guests" className="gap-1 text-xs">
+                  <TabsList className="grid w-full grid-cols-4 rounded-none text-xs">
+                    <TabsTrigger value="guests" className="gap-1">
                       <Users className="w-3 h-3" />
                       Ospiti
                     </TabsTrigger>
-                    <TabsTrigger value="tables" className="gap-1 text-xs">
+                    <TabsTrigger value="tables" className="gap-1">
                       <Layout className="w-3 h-3" />
                       Tavoli
                     </TabsTrigger>
-                    <TabsTrigger value="settings" className="gap-1 text-xs">
+                    <TabsTrigger value="suggestions" className="gap-1">
+                      <Lightbulb className="w-3 h-3" />
+                      AI
+                    </TabsTrigger>
+                    <TabsTrigger value="stats" className="gap-1">
                       <Settings className="w-3 h-3" />
-                      Impost.
+                      Stats
                     </TabsTrigger>
                   </TabsList>
                   
