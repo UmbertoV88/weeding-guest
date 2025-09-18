@@ -178,6 +178,13 @@ const TablePlannerTest: React.FC = () => {
                 </div>
               </TabsContent>
               
+              <TabsContent value="notifications" className="m-0 p-6">
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">Test Sistema Notifiche</h3>
+                  <NotificationDemo />
+                </div>
+              </TabsContent>
+              
               <TabsContent value="info" className="m-0 p-6">
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold">Component Status</h3>
