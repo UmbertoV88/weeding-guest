@@ -327,7 +327,7 @@ const TablePlanner: React.FC = () => {
                   </TabsList>
                   
                   <TabsContent value="guests" className="m-0">
-                    <GuestList
+                    <TableGuestList
                       guests={guests}
                       tables={tables}
                       categories={mockGuestCategories}
