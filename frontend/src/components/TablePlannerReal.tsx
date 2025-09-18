@@ -94,7 +94,8 @@ const mockTables: AdvancedTable[] = [
     x: 200,
     y: 150,
     assignedGuests: ["real_003", "real_004", "real_005"],
-    user_id: "user_12345"
+    user_id: "user_12345",
+    lato: "sposo"
   },
   {
     id: "t2",
@@ -104,7 +105,8 @@ const mockTables: AdvancedTable[] = [
     x: 400,
     y: 200,
     assignedGuests: ["real_006"],
-    user_id: "user_12345"
+    user_id: "user_12345",
+    lato: "sposa"
   },
   {
     id: "t3",
@@ -114,7 +116,8 @@ const mockTables: AdvancedTable[] = [
     x: 600,
     y: 150,
     assignedGuests: [],
-    user_id: "user_12345"
+    user_id: "user_12345",
+    lato: "centro"
   }
 ];
 
