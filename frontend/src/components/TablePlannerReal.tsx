@@ -359,7 +359,7 @@ const TablePlannerReal: React.FC = () => {
                       tableShapes={mockTableShapes}
                       onCreateTable={handleCreateTable}
                       onUpdateTable={handleTableUpdate}
-                      onDeleteTable={handleDeleteTable}
+                      onDeleteTable={handleDeleteTableRequest}
                       selectedTable={selectedTable}
                       setSelectedTable={setSelectedTable}
                     />
