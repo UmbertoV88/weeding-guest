@@ -327,14 +327,21 @@ const TablePlanner: React.FC = () => {
                   </TabsList>
                   
                   <TabsContent value="guests" className="m-0">
-                    <TableGuestList
-                      guests={guests}
-                      tables={tables}
-                      categories={defaultGuestCategories}
-                      onGuestAssignment={handleGuestAssignment}
-                      selectedGuest={selectedGuest}
-                      setSelectedGuest={setSelectedGuest}
-                    />
+                    <div className="space-y-4">
+                      <AdvancedGuestFilters
+                        guests={guests}
+                        categories={defaultGuestCategories}
+                        onFilteredGuestsChange={setFilteredGuests}
+                      />
+                      <TableGuestList
+                        guests={filteredGuests}
+                        tables={tables}
+                        categories={defaultGuestCategories}
+                        onGuestAssignment={handleGuestAssignment}
+                        selectedGuest={selectedGuest}
+                        setSelectedGuest={setSelectedGuest}
+                      />
+                    </div>
                   </TabsContent>
                   
                   <TabsContent value="tables" className="m-0">
