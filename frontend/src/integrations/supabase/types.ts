@@ -176,6 +176,7 @@ export type Database = {
           id: number
           lato: string | null
           nome_tavolo: string | null
+          user_id: string
         }
         Insert: {
           capacita_max: number
@@ -183,6 +184,7 @@ export type Database = {
           id?: number
           lato?: string | null
           nome_tavolo?: string | null
+          user_id: string
         }
         Update: {
           capacita_max?: number
@@ -190,6 +192,7 @@ export type Database = {
           id?: number
           lato?: string | null
           nome_tavolo?: string | null
+          user_id?: string
         }
         Relationships: []
       }
