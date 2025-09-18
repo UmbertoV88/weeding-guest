@@ -23,7 +23,7 @@ print("🎯 CREATING TEST CONFIRMED GUESTS IN DATABASE")
 print("=" * 50)
 
 # Test user ID (we'll use a generic test user)
-TEST_USER_ID = "test-user-confirmed-guests"
+TEST_USER_ID = str(uuid.uuid4())  # Valid UUID format
 
 # First, let's check if we have any users in profiles
 print("1. Checking existing users...")
