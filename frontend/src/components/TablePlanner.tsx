@@ -15,6 +15,7 @@ import FloorPlanCanvas from './FloorPlanCanvas';
 import TableGuestList from './TableGuestList';
 import TableManager from './TableManager';
 import { useSupabaseConfirmedGuests } from '@/hooks/useSupabaseConfirmedGuests';
+import { useSupabaseTables } from '@/hooks/useSupabaseTables';
 import { AdvancedTable, Venue, TableShape } from '@/types/table';
 
 // Categorie ospiti standard
