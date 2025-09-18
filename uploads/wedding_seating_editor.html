@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Wedding seating editor - capienza globale</title>
+  <style>
+    body{font-family: Arial, Helvetica, sans-serif; padding:20px;}
+    .tables{display:flex; gap:20px; flex-wrap:wrap;}
+    .table{border:1px solid #ccc; padding:10px; width:260px; min-height:140px; border-radius:6px;}
+    .table h3{margin:0 0 8px 0; display:flex; justify-content:space-between; align-items:center;}
+    .guest{padding:6px; margin:6px 0; background:#f7f7f7; border-radius:4px; cursor:move; display:flex; justify-content:space-between; align-items:center;}
+    .guest .left{display:flex; flex-direction:column;}
+    .controls{margin-top:12px; margin-bottom:12px;}
+    .dropzone{min-height:40px;}
+    button{padding:6px 8px; margin-left:6px;}
+    .removeBtn{background:transparent;border:0;font-weight:bold;color:#900;cursor:pointer;}
+    .trash{border:2px dashed #f33; padding:10px; width:260px; min-height:60px; border-radius:6px; color:#900; margin-top:12px;}
+    .table-footer{margin-top:8px; font-size:13px; color:#444;}
+    #addTableBtn{margin-left:12px;}
+    #globalCapacityInput{width:60px;}
+  </style>
+</head>
+<body>
+  <h2>Editor posti a sedere - capienza globale</h2>
+  <p>Imposta una capienza massima globale per tutti i tavoli. Tutti i tavoli useranno lo stesso limite.</p>
+
+  <div class="controls">
+    Capienza massima tavolo: <input type="number" id="globalCapacityInput" min="1" value="4">
+    <button id="addTableBtn">Aggiungi tavolo</button>
+    <button id="downloadCsv">Scarica CSV</button>
+    <button id="resetBtn">Reset proposta iniziale</button>
+  </div>
+
+  <div class="tables" id="tables"></div>
+
+  <div class="trash" id="trash" ondragover="event.preventDefault();" ondrop="event.preventDefault(); handleDropToTrash(event);">
+    <strong>Cestino (rilascia qui per cancellare)</strong>
+    <div style="font-size:13px; color:#600;">Gli invitati rimossi non verranno inclusi nel CSV.</div>
+  </div>
+
+<script>
+let nextTableId = 5; // per nuovi tavoli
+let globalCapacity = 4;
+
+const data = {
+  "guests":[
+    {"id":1,"name":"Alice","family_id":1,"vip":false,"notes":"likes cooking; speaks italian","removed":false},
+    {"id":2,"name":"Bob","family_id":2,"vip":false,"notes":"football fan; speaks italian","removed":false},
+    {"id":3,"name":"Charlie","family_id":2,"vip":false,"notes":"does not get along with Bob","removed":false},
+    {"id":4,"name":"Diana","family_id":3,"vip":true,"notes":"colleague of bride; vegan","removed":false},
+    {"id":5,"name":"Elena","family_id":1,"vip":false,"notes":"friend of Alice; loves art","removed":false},
+    {"id":6,"name":"Francesco","family_id":4,"vip":false,"notes":"works with groom; speaks english","removed":false},
+    {"id":7,"name":"Giorgia","family_id":4,"vip":false,"notes":"+1 to 8","removed":false},
+    {"id":8,"name":"Marco","family_id":5,"vip":false,"notes":"brought guest Giorgia","removed":false},
+    {"id":10,"name":"Matteo","family_id":7,"vip":false,"notes":"has kids; likes chess","removed":false},
+    {"id":11,"name":"Nadia","family_id":7,"vip":false,"notes":"spouse of Matteo","removed":false},
+    {"id":12,"name":"Omar","family_id":8,"vip":false,"notes":"travels a lot; speaks english","removed":false},
+    {"id":13,"name":"Paolo","family_id":9,"vip":false,"notes":"old friend of groom","removed":false},
+    {"id":14,"name":"Quinn","family_id":9,"vip":false,"notes":"friend; enjoys music","removed":false},
+    {"id":15,"name":"Rosa","family_id":10,"vip":false,"notes":"prefers to sit with family","removed":false},
+    {"id":16,"name":"Stefano","family_id":10,"vip":false,"notes":"related to Rosa","removed":false}
+  ],
+  "tables":[
+    {"table_id":1,"members":[1,5,2,3]},
+    {"table_id":2,"members":[4,6,7,8]},
+    {"table_id":3,"members":[10,11,12]},
+    {"table_id":4,"members":[13,14,15,16]}
+  ]
+};
+
+function createGuestElem(guest){
+  if(guest.removed) return null;
+  const el = document.createElement('div');
+  el.className='guest';
+  el.draggable=true;
+  el.dataset.gid=guest.id;
+  el.innerHTML='<div class="left"><strong>'+guest.name+'</strong><small>famiglia '+guest.family_id+'</small></div>'
+              +'<div class="right"><label style="margin-right:6px;"><input type="checkbox" class="vipchk" '+(guest.vip?'checked':'')+'> VIP</label>'
+              +'<button class="removeBtn" title="Rimuovi invitato">✖</button></div>';
+  el.addEventListener('dragstart',e=>{ e.dataTransfer.setData('text/plain',guest.id); el.style.opacity='0.5'; });
+  el.addEventListener('dragend',e=>{ el.style.opacity='1'; });
+  el.querySelector('.vipchk').addEventListener('change',ev=>{ guest.vip=ev.target.checked; });
+  el.querySelector('.removeBtn').addEventListener('click',ev=>{ ev.stopPropagation(); if(confirm('Vuoi davvero rimuovere '+guest.name+'?')) removeGuest(guest.id); });
+  return el;
+}
+
+function renderTables(){
+  const container = document.getElementById('tables');
+  container.innerHTML='';
+  data.tables.forEach(tbl=>{
+    const div=document.createElement('div'); div.className='table'; div.dataset.tableId=tbl.table_id;
+    const h3=document.createElement('h3');
+    h3.textContent='Tavolo '+tbl.table_id+' ('+tbl.members.filter(mid=>!isGuestRemoved(mid)).length+'/'+globalCapacity+')';
+    div.appendChild(h3);
+    const drop=document.createElement('div'); drop.className='dropzone';
+    drop.addEventListener('dragover',ev=>{ ev.preventDefault(); });
+    drop.addEventListener('drop',ev=>{ ev.preventDefault(); const gid=parseInt(ev.dataTransfer.getData('text/plain')); moveGuestToTable(gid,tbl.table_id); });
+    tbl.members.forEach(gid=>{ const g=data.guests.find(x=>x.id===gid); if(g && !g.removed){ const ge=createGuestElem(g); if(ge) drop.appendChild(ge);} });
+    div.appendChild(drop);
+    const footer=document.createElement('div'); footer.className='table-footer'; footer.textContent='Max '+globalCapacity+' persone per tavolo.';
+    div.appendChild(footer);
+    container.appendChild(div);
+  });
+}
+
+function isGuestRemoved(gid){ const g=data.guests.find(x=>x.id===gid); return g?!!g.removed:true; }
+
+function moveGuestToTable(gid,table_id){
+  if(isGuestRemoved(gid)) return;
+  const tbl=data.tables.find(t=>t.table_id===table_id); if(!tbl) return;
+  const currentCount=tbl.members.filter(mid=>!isGuestRemoved(mid)).length;
+  if(currentCount>=globalCapacity){ alert('Tavolo pieno! Capienza: '+globalCapacity); return; }
+  data.tables.forEach(t=>{ t.members=t.members.filter(m=>m!==gid); });
+  tbl.members.push(gid);
+  renderTables();
+}
+
+function removeGuest(gid){ const g=data.guests.find(x=>x.id===gid); if(g) g.removed=true; data.tables.forEach(t=>{ t.members=t.members.filter(m=>m!==gid); }); renderTables(); }
+
+function handleDropToTrash(event){ const gid=parseInt(event.dataTransfer.getData('text/plain')); if(!isNaN(gid)){ if(confirm('Vuoi davvero eliminare questo invitato?')) removeGuest(gid); } }
+
+function downloadCSV(){
+  let rows=['table_id,seat_position,guest_id,guest_name'];
+  data.tables.forEach(t=>{ t.members.forEach((gid,idx)=>{ const g=data.guests.find(x=>x.id===gid); if(g&&!g.removed) rows.push([t.table_id,idx+1,g.id,'"'+g.name+'"'].join(',')); }); });
+  const blob=new Blob([rows.join('\n')],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='wedding_seating_manual.csv'; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },1000);
+}
+
+document.getElementById('globalCapacityInput').addEventListener('change',ev=>{
+  const val=parseInt(ev.target.value); if(isNaN(val)||val<1){ alert('Inserisci un numero >= 1'); ev.target.value=globalCapacity; return; }
+  globalCapacity=val; renderTables();
+});
+
+document.getElementById('addTableBtn').addEventListener('click',()=>{ data.tables.push({table_id:nextTableId++, members:[]}); renderTables(); });
+document.getElementById('downloadCsv').addEventListener('click',downloadCSV);
+document.getElementById('resetBtn').addEventListener('click',()=>{ if(confirm('Reset all seating?')) location.reload(); });
+
+document.getElementById('trash').addEventListener('dragover',ev=>ev.preventDefault());
+document.getElementById('trash').addEventListener('drop',ev=>{ ev.preventDefault(); handleDropToTrash(ev); });
+
+renderTables();
+</script>
+</body>
+</html>
