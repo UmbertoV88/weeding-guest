@@ -19,7 +19,7 @@ import {
   AlertTriangle, 
   Info, 
   Trash2, 
-  MarkAsRead,
+  Check,
   X 
 } from 'lucide-react';
 import { useNotifications } from '@/contexts/NotificationContext';
