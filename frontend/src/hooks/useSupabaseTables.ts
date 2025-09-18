@@ -57,7 +57,7 @@ export const useSupabaseTables = () => {
 
       setTables(mappedTables);
       
-      console.log(`✅ Recuperati ${mappedTables.length} tavoli dal database`);
+      console.log(`✅ Recuperati ${mappedTables.length} tavoli dal database:`, mappedTables);
       
     } catch (err) {
       console.error('❌ Errore nel recupero tavoli:', err);
