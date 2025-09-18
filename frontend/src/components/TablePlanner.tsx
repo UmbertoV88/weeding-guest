@@ -19,14 +19,12 @@ import { useSupabaseConfirmedGuests } from '@/hooks/useSupabaseConfirmedGuests';
 import { useSupabaseTables } from '@/hooks/useSupabaseTables';
 import { AdvancedTable, Venue, TableShape } from '@/types/table';
 
-// Categorie ospiti standard
+// Categorie ospiti standard  
 const defaultGuestCategories: string[] = [
-  "Famiglia dello sposo",
-  "Famiglia della sposa", 
-  "Amici dello sposo",
-  "Amici della sposa",
-  "Colleghi",
-  "Altri invitati"
+  "Famiglia di lui",
+  "Famiglia di lei", 
+  "Amici",
+  "Colleghi"
 ];
 
 const mockTables: AdvancedTable[] = [
