@@ -474,6 +474,42 @@ const TablePlanner: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal di Conferma Eliminazione Tavolo */}
+      <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <Trash2 className="w-5 h-5 text-red-500" />
+              Conferma Eliminazione Tavolo
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              Sei sicuro di voler eliminare <strong>"{tableToDelete?.name}"</strong> dal database?
+              <br /><br />
+              <div className="bg-yellow-50 border border-yellow-200 rounded p-3 mt-2">
+                <strong>⚠️ Attenzione:</strong>
+                <ul className="mt-1 text-sm space-y-1">
+                  <li>• Il tavolo verrà rimosso definitivamente dal database</li>
+                  <li>• Gli ospiti assegnati a questo tavolo verranno rimossi automaticamente</li>
+                  <li>• Questa azione non può essere annullata</li>
+                </ul>
+              </div>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={handleCancelDeleteTable}>
+              Annulla
+            </AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={handleConfirmDeleteTable}
+              className="bg-red-600 hover:bg-red-700 focus:ring-red-600"
+            >
+              <Trash2 className="w-4 h-4 mr-2" />
+              Elimina Tavolo
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
