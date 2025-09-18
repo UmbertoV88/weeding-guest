@@ -86,9 +86,7 @@ const TableManager: React.FC<TableManagerProps> = ({
 
   // Handle delete table
   const handleDeleteTable = (tableId: string) => {
-    if (window.confirm('Sei sicuro di voler eliminare questo tavolo? Gli ospiti assegnati verranno rimossi.')) {
-      onDeleteTable(tableId);
-    }
+    onDeleteTable(tableId);
   };
 
   // Get guests assigned to a table
