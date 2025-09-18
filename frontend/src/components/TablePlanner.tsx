@@ -12,7 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 import CommonHeader from '@/components/CommonHeader';
 import FloorPlanCanvas from './FloorPlanCanvas';
-import GuestList from './GuestList';
+import TableGuestList from './TableGuestList';
 import TableManager from './TableManager';
 import { AdvancedTable, Venue, TableGuest, GuestCategory, TableShape } from '@/types/table';
 
