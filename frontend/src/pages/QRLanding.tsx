@@ -44,10 +44,13 @@ interface WeddingInfo {
 }
 
 const QRLanding: React.FC = () => {
-  const { token, type } = useParams<{ token: string; type: string }>();
+  const { token } = useParams<{ token: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { notifyGuestConfirmed, notifyGuestDeclined } = useNotifications();
+  
+  // Determina il tipo dalla URL
+  const type = window.location.pathname.split('/')[1]; // 'rsvp', 'checkin', o 'wedding-info'
   
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
