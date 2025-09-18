@@ -30,20 +30,25 @@ const CommonHeader = ({ showAuthButtons = false, className = "", showSidebarTrig
           </Link>
         </div>
         
-        {showAuthButtons && !user && (
-          <div className="flex items-center gap-3">
-            <Link to="/auth?tab=signin">
-              <Button variant="ghost" className="text-primary-deep hover:text-primary">
-                Accedi
-              </Button>
-            </Link>
-            <Link to="/auth?tab=signup">
-              <Button className="bg-primary hover:bg-primary/90 text-white">
-                Registrati
-              </Button>
-            </Link>
-          </div>
-        )}
+        <div className="flex items-center gap-3">
+          {/* Notifications for authenticated users */}
+          {user && <NotificationPanel />}
+          
+          {showAuthButtons && !user && (
+            <>
+              <Link to="/auth?tab=signin">
+                <Button variant="ghost" className="text-primary-deep hover:text-primary">
+                  Accedi
+                </Button>
+              </Link>
+              <Link to="/auth?tab=signup">
+                <Button className="bg-primary hover:bg-primary/90 text-white">
+                  Registrati
+                </Button>
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );
