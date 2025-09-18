@@ -117,9 +117,20 @@ const TablePlanner: React.FC = () => {
     guestStats,
     updateGuestTableAssignment 
   } = useSupabaseConfirmedGuests();
+
+  // Hook per recuperare tavoli dal database reale
+  const {
+    tables: dbTables,
+    loading: tablesLoading,
+    error: tablesError,
+    createTable: createDbTable,
+    updateTable: updateDbTable,
+    deleteTable: deleteDbTable,
+    tableStats
+  } = useSupabaseTables();
   
   const [guests, setGuests] = useState(confirmedGuests);
-  const [tables, setTables] = useState<AdvancedTable[]>(mockTables);
+  const [tables, setTables] = useState<AdvancedTable[]>(dbTables);
   const [venue, setVenue] = useState<Venue>(mockVenue);
   const [selectedTable, setSelectedTable] = useState<AdvancedTable | null>(null);
   const [selectedGuest, setSelectedGuest] = useState<any>(null);
