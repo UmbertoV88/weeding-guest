@@ -137,6 +137,8 @@ const TablePlanner: React.FC = () => {
   const [selectedGuest, setSelectedGuest] = useState<any>(null);
   const [activeTab, setActiveTab] = useState<string>('guests');
   const [viewMode, setViewMode] = useState<'design' | 'preview'>('design');
+  const [tableToDelete, setTableToDelete] = useState<AdvancedTable | null>(null);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   // Aggiorna stato locale quando cambiano gli ospiti dal database
   useEffect(() => {
