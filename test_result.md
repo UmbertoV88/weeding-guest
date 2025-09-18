@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Fix bug: Table planner must show ONLY confirmed guests from Supabase database (invitati table, confermato = TRUE) instead of mock data"
+user_problem_statement: "Fix bug: Table planner must show ONLY confirmed guests AND real tables from Supabase database instead of mock data. Check table deletion functionality."
 
 backend:
   - task: "Basic API endpoints (root, status checks)"
