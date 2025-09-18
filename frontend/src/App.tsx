@@ -35,6 +35,7 @@ const App = () => (
                 <TablePlanner />
               </ProtectedRoute>
             } />
+            <Route path="/tavoli-demo" element={<TablePlannerDemo />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
