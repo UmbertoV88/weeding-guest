@@ -224,6 +224,37 @@ const TablePlanner: React.FC = () => {
   const unassignedGuests = guests.filter(guest => !guest.tableId);
   const assignedGuests = guests.filter(guest => guest.tableId);
 
+  // Mostra loading se stiamo caricando ospiti
+  if (guestsLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center">
+        <Card className="p-8 text-center">
+          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4" />
+          <h3 className="text-lg font-semibold mb-2">Caricamento ospiti confermati...</h3>
+          <p className="text-gray-600">Recuperando dati dal database</p>
+        </Card>
+      </div>
+    );
+  }
+
+  // Mostra errore se c'è un problema
+  if (guestsError) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center">
+        <Card className="p-8 text-center max-w-md">
+          <div className="text-red-500 mb-4">
+            <Users className="w-12 h-12 mx-auto mb-2" />
+          </div>
+          <h3 className="text-lg font-semibold mb-2 text-red-800">Errore nel caricamento</h3>
+          <p className="text-gray-600 mb-4">{guestsError}</p>
+          <Button onClick={() => window.location.reload()} variant="outline">
+            Riprova
+          </Button>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50">
       <CommonHeader showSidebarTrigger={false} />
