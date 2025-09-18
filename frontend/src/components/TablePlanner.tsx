@@ -246,14 +246,16 @@ const TablePlanner: React.FC = () => {
   const unassignedGuests = guests.filter(guest => !guest.tableId);
   const assignedGuests = guests.filter(guest => guest.tableId);
 
-  // Mostra loading se stiamo caricando ospiti
-  if (guestsLoading) {
+  // Mostra loading se stiamo caricando ospiti o tavoli
+  if (guestsLoading || tablesLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center">
         <Card className="p-8 text-center">
           <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Caricamento ospiti confermati...</h3>
-          <p className="text-gray-600">Recuperando dati dal database</p>
+          <h3 className="text-lg font-semibold mb-2">
+            Caricamento {guestsLoading && tablesLoading ? 'ospiti e tavoli' : guestsLoading ? 'ospiti confermati' : 'tavoli'} dal database...
+          </h3>
+          <p className="text-gray-600">Recuperando dati dal database Supabase</p>
         </Card>
       </div>
     );
