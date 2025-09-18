@@ -9,6 +9,7 @@ import Tables from "./pages/Tables";
 import TablePlanner from "./components/TablePlanner";
 import TablePlannerDemo from "./components/TablePlannerDemo";
 import TablePlannerReal from "./components/TablePlannerReal";
+import TablePlannerTest from "./components/TablePlannerTest";
 import DatabaseSchemaFix from "./components/DatabaseSchemaFix";
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
