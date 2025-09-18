@@ -108,19 +108,31 @@ const TablePlanner: React.FC = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   
-  const [guests, setGuests] = useState<TableGuest[]>(mockGuests);
+  // Hook per recuperare ospiti confermati dal database reale
+  const { 
+    confirmedGuests, 
+    loading: guestsLoading, 
+    error: guestsError, 
+    guestStats,
+    updateGuestTableAssignment 
+  } = useSupabaseConfirmedGuests();
+  
+  const [guests, setGuests] = useState(confirmedGuests);
   const [tables, setTables] = useState<AdvancedTable[]>(mockTables);
   const [venue, setVenue] = useState<Venue>(mockVenue);
   const [selectedTable, setSelectedTable] = useState<AdvancedTable | null>(null);
-  const [selectedGuest, setSelectedGuest] = useState<TableGuest | null>(null);
-  const [activeTab, setActiveTab] = useState<string>('floor-plan');
+  const [selectedGuest, setSelectedGuest] = useState<any>(null);
+  const [activeTab, setActiveTab] = useState<string>('guests');
   const [viewMode, setViewMode] = useState<'design' | 'preview'>('design');
+
+  // Aggiorna stato locale quando cambiano gli ospiti dal database
+  useEffect(() => {
+    setGuests(confirmedGuests);
+  }, [confirmedGuests]);
 
   // Initialize with user data
   useEffect(() => {
     if (user) {
-      // Update mock data with actual user_id
-      setGuests(prev => prev.map(g => ({ ...g, user_id: user.id })));
       setTables(prev => prev.map(t => ({ ...t, user_id: user.id })));
       setVenue(prev => ({ ...prev, user_id: user.id }));
     }
