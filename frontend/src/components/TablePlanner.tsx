@@ -136,34 +136,19 @@ const TablePlanner: React.FC = () => {
 
   // Handle guest assignment to table - Aggiornato per usare hook database
   const handleGuestAssignment = useCallback((guestId: string, tableId: string, seatNumber?: number) => {
-    // Aggiorna stato locale per UI reattiva
+    // Aggiorna stato locale degli ospiti per UI reattiva
     setGuests(prev => prev.map(guest => 
       guest.id === guestId 
         ? { ...guest, tableId, seatNumber }
         : guest
     ));
-    
-    // Aggiorna tavoli
-    setTables(prev => prev.map(table => {
-      if (table.id === tableId) {
-        const updatedGuests = [...table.assignedGuests];
-        if (!updatedGuests.includes(guestId)) {
-          updatedGuests.push(guestId);
-        }
-        return { ...table, assignedGuests: updatedGuests };
-      }
-      return {
-        ...table,
-        assignedGuests: table.assignedGuests.filter(id => id !== guestId)
-      };
-    }));
 
-    // Aggiorna nel hook database
+    // Aggiorna nel hook database (per ora solo guest assignment, i tavoli vengono dal DB)
     updateGuestTableAssignment(guestId, tableId, seatNumber);
 
     toast({
       title: "Ospite assegnato",
-      description: `L'ospite confermato è stato assegnato al tavolo con successo.`
+      description: `L'ospite è stato assegnato al tavolo con successo.`
     });
   }, [toast, updateGuestTableAssignment]);
 
