@@ -17,96 +17,14 @@ import TableManager from './TableManager';
 import { useSupabaseConfirmedGuests } from '@/hooks/useSupabaseConfirmedGuests';
 import { AdvancedTable, Venue, TableShape } from '@/types/table';
 
-// Mock data for initial implementation - SOLO OSPITI CONFERMATI
-const mockGuests: TableGuest[] = [
-  {
-    id: "g1",
-    name: "Marco Rossi",
-    email: "marco.rossi@email.com",
-    category: "Famiglia dello sposo",
-    dietaryRestrictions: "Vegetariano",
-    tableId: undefined,
-    seatNumber: undefined,
-    user_id: "",
-    confermato: true // ✅ Confermato
-  },
-  {
-    id: "g2",
-    name: "Anna Bianchi",
-    email: "anna.bianchi@email.com",
-    category: "Famiglia della sposa",
-    dietaryRestrictions: "Senza glutine",
-    tableId: undefined,
-    seatNumber: undefined,
-    user_id: "",
-    confermato: true // ✅ Confermato
-  },
-  {
-    id: "g3",
-    name: "Luigi Verdi",
-    email: "luigi.verdi@email.com",
-    category: "Amici dello sposo",
-    dietaryRestrictions: undefined,
-    tableId: "t1",
-    seatNumber: 1,
-    user_id: "",
-    confermato: true // ✅ Confermato
-  },
-  {
-    id: "g4",
-    name: "Francesca Romano",
-    email: "francesca.romano@email.com",
-    category: "Amici della sposa",
-    dietaryRestrictions: undefined,
-    tableId: "t1",
-    seatNumber: 2,
-    user_id: "",
-    confermato: true // ✅ Confermato
-  },
-  {
-    id: "g5",
-    name: "Giuseppe Marino",
-    email: "giuseppe.marino@email.com",
-    category: "Famiglia dello sposo",
-    dietaryRestrictions: undefined,
-    tableId: "t1",
-    seatNumber: 3,
-    user_id: "",
-    confermato: true // ✅ Confermato
-  },
-  {
-    id: "g6",
-    name: "Valentina Ferrari",
-    email: "valentina.ferrari@email.com",
-    category: "Amici della sposa",
-    dietaryRestrictions: "Vegano",
-    tableId: undefined,
-    seatNumber: undefined,
-    user_id: "",
-    confermato: true // ✅ Confermato
-  },
-  {
-    id: "g7",
-    name: "Roberto Conti",
-    email: "roberto.conti@email.com",
-    category: "Colleghi",
-    dietaryRestrictions: undefined,
-    tableId: undefined,
-    seatNumber: undefined,
-    user_id: "",
-    confermato: true // ✅ Confermato
-  },
-  {
-    id: "g8",
-    name: "Silvia Martini",
-    email: "silvia.martini@email.com",
-    category: "Famiglia della sposa",
-    dietaryRestrictions: "Intollerante al lattosio",
-    tableId: "t2",
-    seatNumber: 1,
-    user_id: "",
-    confermato: true // ✅ Confermato
-  }
+// Categorie ospiti standard
+const defaultGuestCategories: string[] = [
+  "Famiglia dello sposo",
+  "Famiglia della sposa", 
+  "Amici dello sposo",
+  "Amici della sposa",
+  "Colleghi",
+  "Altri invitati"
 ];
 
 const mockTables: AdvancedTable[] = [
