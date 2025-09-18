@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import Tables from "./pages/Tables";
 import TablePlanner from "./components/TablePlanner";
+import TablePlannerDemo from "./components/TablePlannerDemo";
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
 import NotFound from "./pages/NotFound";
