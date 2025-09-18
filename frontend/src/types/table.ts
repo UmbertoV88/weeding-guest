@@ -93,6 +93,7 @@ export interface TableGuest {
   tableId?: string;
   seatNumber?: number;
   user_id: string;
+  confermato: boolean; // Solo ospiti confermati nella sezione tavoli
 }
 
 export interface GuestCategory {
