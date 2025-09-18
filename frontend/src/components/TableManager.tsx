@@ -275,10 +275,16 @@ const TableManager: React.FC<TableManagerProps> = ({
                 <CardContent className="pt-0">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-gray-600">
-                        {table.shape === 'round' ? 'Rotondo' : 
-                         table.shape === 'rectangular' ? 'Rettangolare' : 'Quadrato'}
-                      </span>
+                      <div className="flex flex-col">
+                        <span className="text-gray-600">
+                          {table.shape === 'round' ? 'Rotondo' : 
+                           table.shape === 'rectangular' ? 'Rettangolare' : 'Quadrato'}
+                        </span>
+                        <span className="text-gray-500 text-xs">
+                          {table.lato === 'sposo' ? 'Lato Sposo' : 
+                           table.lato === 'sposa' ? 'Lato Sposa' : 'Centro'}
+                        </span>
+                      </div>
                       <Badge 
                         variant={occupancyRate === 1 ? "default" : occupancyRate > 0.5 ? "secondary" : "outline"}
                         className="text-xs"
