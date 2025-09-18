@@ -23,32 +23,38 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Index />
-              </ProtectedRoute>
-            } />
-            <Route path="/tavoli" element={
-              <ProtectedRoute>
-                <TablePlanner />
-              </ProtectedRoute>
-            } />
-            <Route path="/tavoli-demo" element={<TablePlannerDemo />} />
-            <Route path="/tavoli-real" element={<TablePlannerReal />} />
-            <Route path="/tavoli-test" element={<TablePlannerTest />} />
-            <Route path="/database-fix" element={<DatabaseSchemaFix />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AuthProvider>
-      </BrowserRouter>
+      <NotificationProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Index />
+                </ProtectedRoute>
+              } />
+              <Route path="/tavoli" element={
+                <ProtectedRoute>
+                  <TablePlanner />
+                </ProtectedRoute>
+              } />
+              <Route path="/tavoli-demo" element={<TablePlannerDemo />} />
+              <Route path="/tavoli-real" element={<TablePlannerReal />} />
+              <Route path="/tavoli-test" element={<TablePlannerTest />} />
+              <Route path="/database-fix" element={<DatabaseSchemaFix />} />
+              {/* QR Code Landing Pages */}
+              <Route path="/rsvp/:token" element={<QRLanding />} />
+              <Route path="/checkin/:token" element={<QRLanding />} />
+              <Route path="/wedding-info/:token" element={<QRLanding />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AuthProvider>
+        </BrowserRouter>
+      </NotificationProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
