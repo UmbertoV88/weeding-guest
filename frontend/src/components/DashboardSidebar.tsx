@@ -120,6 +120,7 @@ const DashboardSidebar = ({
   const menuItems = [
     { icon: Users, label: "Invitati", href: "/dashboard", isActive: location.pathname === "/dashboard" },
     { icon: Utensils, label: "Tavoli", href: "/tavoli", isActive: location.pathname === "/tavoli" },
+    { icon: QrCode, label: "QR Code", href: "/qr-manager", isActive: location.pathname === "/qr-manager" },
     { icon: Camera, label: "Fotografo", href: "/fotografo", isActive: location.pathname === "/fotografo" },
     { icon: DollarSign, label: "Finanza", href: "/finanza", isActive: location.pathname === "/finanza" },
     { icon: MapPin, label: "Location", href: "/location", isActive: location.pathname === "/location" },
