@@ -206,8 +206,14 @@ const TablePlanner: React.FC = () => {
     }
   }, [createDbTable]);
 
-  // Handle table deletion
-  const handleDeleteTable = useCallback((tableId: string) => {
+  // Handle table deletion - Aggiornato per usare database reale
+  const handleDeleteTable = useCallback(async (tableId: string) => {
+    const confirmDelete = window.confirm(
+      'Sei sicuro di voler eliminare questo tavolo dal database? Gli ospiti assegnati verranno rimossi.'
+    );
+    
+    if (!confirmDelete) return;
+
     // Remove guests from deleted table
     setGuests(prev => prev.map(guest => 
       guest.tableId === tableId 
@@ -215,13 +221,12 @@ const TablePlanner: React.FC = () => {
         : guest
     ));
     
-    setTables(prev => prev.filter(table => table.id !== tableId));
-    
-    toast({
-      title: "Tavolo eliminato",
-      description: "Il tavolo è stato rimosso dalla pianta."
-    });
-  }, [toast]);
+    // Elimina dal database
+    const success = await deleteDbTable(tableId);
+    if (success) {
+      console.log(`✅ Tavolo eliminato dal database: ${tableId}`);
+    }
+  }, [deleteDbTable]);
 
   // Export seating chart
   const handleExport = () => {
