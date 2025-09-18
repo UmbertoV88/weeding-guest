@@ -30,16 +30,7 @@ const FloorPlanCanvas: React.FC<FloorPlanCanvasProps> = ({
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [scale, setScale] = useState(0.8);
 
-  // Debug logging per capire se i tavoli arrivano e vengono renderizzati
-  useEffect(() => {
-    console.log(`🎯 FloorPlanCanvas ricevuto ${tables.length} tavoli:`, tables);
-    if (tables.length > 0) {
-      console.log('📍 Coordinate tavoli:');
-      tables.forEach(table => {
-        console.log(`  - ${table.name}: x=${table.x}, y=${table.y}, shape=${table.shape}, seats=${table.seats}`);
-      });
-    }
-  }, [tables]);
+  // Table data received and ready for rendering
 
   // Draw table on canvas
   const drawTable = useCallback((ctx: CanvasRenderingContext2D, table: AdvancedTable, isSelected = false, isDragged = false) => {
