@@ -142,6 +142,9 @@ const TableGuestList: React.FC<TableGuestListProps> = ({
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <h4 className="font-medium text-sm truncate">{guest.name}</h4>
+                      <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                        ✅ Confermato
+                      </Badge>
                       {guest.tableId && (
                         <Badge variant="secondary" className="text-xs">
                           <Check className="w-3 h-3 mr-1" />
