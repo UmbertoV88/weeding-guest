@@ -101,3 +101,98 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Integrate new advanced table seating system with interactive canvas, drag & drop functionality, and visual guest management to replace current table section"
+
+backend:
+  - task: "Create Supabase tables schema for table management"
+    implemented: false
+    working: "NA"
+    file: "backend/table_models.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Need to create tables for venues, tables, and table assignments in Supabase"
+
+  - task: "Create table management API endpoints"
+    implemented: false
+    working: "NA"
+    file: "backend/table_routes.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "CRUD operations for tables, venues, and guest assignments"
+
+frontend:
+  - task: "Convert TablePlanner.jsx to TypeScript"
+    implemented: false
+    working: "NA"
+    file: "frontend/src/components/TablePlanner.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Convert main component from JS to TS and integrate with existing app"
+
+  - task: "Convert FloorPlanCanvas.jsx to TypeScript"
+    implemented: false
+    working: "NA"
+    file: "frontend/src/components/FloorPlanCanvas.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Canvas component with drag & drop functionality"
+
+  - task: "Convert GuestList and TableManager to TypeScript"
+    implemented: false
+    working: "NA"
+    file: "frontend/src/components/GuestList.tsx, TableManager.tsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Supporting components for guest and table management"
+
+  - task: "Integrate with Supabase and existing auth"
+    implemented: false
+    working: "NA"
+    file: "frontend/src/hooks/useTables.ts"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Replace mock data with Supabase integration"
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 0
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Create Supabase tables schema for table management"
+    - "Convert TablePlanner.jsx to TypeScript"
+    - "Convert FloorPlanCanvas.jsx to TypeScript"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Starting integration of advanced table seating system with interactive canvas. Converting from JS to TS and integrating with Supabase database."
