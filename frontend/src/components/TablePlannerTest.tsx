@@ -117,7 +117,7 @@ const TablePlannerTest: React.FC = () => {
           </CardHeader>
           <CardContent className="p-0">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-4 rounded-none">
+              <TabsList className="grid w-full grid-cols-5 rounded-none">
                 <TabsTrigger value="filters" className="gap-2">
                   <Users className="w-4 h-4" />
                   Filtri Avanzati
@@ -129,6 +129,10 @@ const TablePlannerTest: React.FC = () => {
                 <TabsTrigger value="stats" className="gap-2">
                   <Settings className="w-4 h-4" />
                   Statistiche
+                </TabsTrigger>
+                <TabsTrigger value="notifications" className="gap-2">
+                  <Layout className="w-4 h-4" />
+                  Notifiche
                 </TabsTrigger>
                 <TabsTrigger value="info" className="gap-2">
                   <Layout className="w-4 h-4" />
