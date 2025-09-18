@@ -171,6 +171,8 @@ const TablePlannerReal: React.FC = () => {
   const [selectedGuest, setSelectedGuest] = useState<any>(null);
   const [activeTab, setActiveTab] = useState<string>('guests');
   const [viewMode, setViewMode] = useState<'design' | 'preview'>('design');
+  const [tableToDelete, setTableToDelete] = useState<AdvancedTable | null>(null);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   // Handle guest assignment to table
   const handleGuestAssignment = useCallback((guestId: string, tableId: string, seatNumber?: number) => {
