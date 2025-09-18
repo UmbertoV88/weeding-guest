@@ -262,7 +262,7 @@ const TablePlanner: React.FC = () => {
   }
 
   // Mostra errore se c'è un problema
-  if (guestsError) {
+  if (guestsError || tablesError) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center">
         <Card className="p-8 text-center max-w-md">
@@ -270,7 +270,11 @@ const TablePlanner: React.FC = () => {
             <Users className="w-12 h-12 mx-auto mb-2" />
           </div>
           <h3 className="text-lg font-semibold mb-2 text-red-800">Errore nel caricamento</h3>
-          <p className="text-gray-600 mb-4">{guestsError}</p>
+          <p className="text-gray-600 mb-4">
+            {guestsError && `Ospiti: ${guestsError}`}
+            {guestsError && tablesError && <br />}
+            {tablesError && `Tavoli: ${tablesError}`}
+          </p>
           <Button onClick={() => window.location.reload()} variant="outline">
             Riprova
           </Button>
