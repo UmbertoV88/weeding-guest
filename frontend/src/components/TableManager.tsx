@@ -27,6 +27,7 @@ interface CreateTableForm {
   seats: number;
   x: number;
   y: number;
+  lato: 'sposo' | 'sposa' | 'centro';
 }
 
 const TableManager: React.FC<TableManagerProps> = ({
