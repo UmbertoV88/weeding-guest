@@ -391,7 +391,7 @@ const TablePlannerReal: React.FC = () => {
                           </div>
                         </div>
                         <div className="text-xs text-gray-500 bg-blue-50 p-2 rounded border border-blue-200">
-                          🎯 BUG RISOLTO: Sistema ora recupera dati reali dal database con confermato = TRUE
+                          🎯 Sistema integrato con database per gestione ospiti e tavoli
                         </div>
                       </div>
                     </div>
