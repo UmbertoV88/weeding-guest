@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import NotificationProvider from "@/contexts/NotificationContext";
 import Index from "./pages/Index";
 import Tables from "./pages/Tables";
 import TablePlanner from "./components/TablePlanner";
@@ -13,6 +14,7 @@ import TablePlannerTest from "./components/TablePlannerTest";
 import DatabaseSchemaFix from "./components/DatabaseSchemaFix";
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
+import QRLanding from "./pages/QRLanding";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
