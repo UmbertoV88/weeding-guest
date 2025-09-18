@@ -202,7 +202,7 @@ const TablePlanner: React.FC = () => {
         : guest
     ));
     
-    // Elimina dal database
+    // Elimina dal database - il hook aggiornerà automaticamente la lista
     const success = await deleteDbTable(tableToDelete.id);
     if (success) {
       console.log(`✅ Tavolo eliminato dal database: ${tableToDelete.id}`);
