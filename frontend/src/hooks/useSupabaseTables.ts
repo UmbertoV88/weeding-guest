@@ -46,8 +46,8 @@ export const useSupabaseTables = () => {
         name: tavolo.nome_tavolo || `Tavolo ${tavolo.id}`,
         shape: 'round' as const, // Default shape
         seats: tavolo.capacita_max,
-        x: 300 + (parseInt(tavolo.id.toString()) * 50), // Posizione visibile
-        y: 200 + (parseInt(tavolo.id.toString()) * 30),
+        x: 200 + (parseInt(tavolo.id.toString()) % 3) * 200, // Distribuzione orizzontale
+        y: 150 + Math.floor(parseInt(tavolo.id.toString()) / 3) * 150, // Distribuzione verticale
         assignedGuests: [], // Sarà gestito dal sistema
         user_id: user.id,
         created_at: tavolo.created_at
