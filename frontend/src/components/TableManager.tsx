@@ -173,6 +173,25 @@ const TableManager: React.FC<TableManagerProps> = ({
                 />
               </div>
               
+              <div>
+                <Label htmlFor="table-side">Lato</Label>
+                <Select 
+                  value={createForm.lato} 
+                  onValueChange={(value: 'sposo' | 'sposa' | 'centro') => 
+                    setCreateForm(prev => ({ ...prev, lato: value }))
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="sposo">Lato Sposo</SelectItem>
+                    <SelectItem value="sposa">Lato Sposa</SelectItem>
+                    <SelectItem value="centro">Centro</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="table-x">Posizione X</Label>
