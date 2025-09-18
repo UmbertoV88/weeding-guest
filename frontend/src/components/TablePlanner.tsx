@@ -127,15 +127,9 @@ const TablePlanner: React.FC = () => {
     setGuests(confirmedGuests);
   }, [confirmedGuests]);
 
-  // Aggiorna stato locale quando cambiano i tavoli dal database
-  useEffect(() => {
-    setTables(dbTables);
-  }, [dbTables]);
-
   // Initialize with user data
   useEffect(() => {
     if (user) {
-      setTables(prev => prev.map(t => ({ ...t, user_id: user.id })));
       setVenue(prev => ({ ...prev, user_id: user.id }));
     }
   }, [user]);
