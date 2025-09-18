@@ -105,7 +105,7 @@ const NotificationPanel: React.FC = () => {
                       onClick={markAllAsRead}
                       className="h-8 px-2 text-xs"
                     >
-                      <MarkAsRead className="w-3 h-3 mr-1" />
+                      <Check className="w-3 h-3 mr-1" />
                       Segna tutte
                     </Button>
                   )}
