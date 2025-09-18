@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
-import { Plus, Users, Layout, Settings, Download, Eye, ArrowLeft, Database, CheckCircle } from 'lucide-react';
+import { Plus, Users, Layout, Settings, Download, Eye, ArrowLeft, Database, CheckCircle, Trash2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import FloorPlanCanvas from './FloorPlanCanvas';
 import TableGuestList from './TableGuestList';
