@@ -40,7 +40,7 @@ export const useSupabaseTables = () => {
         throw queryError;
       }
 
-      // Mappa i dati dal database al formato AdvancedTable (RIMOSSE PROPRIETÀ NON STANDARD)
+      // Mappa i dati dal database al formato AdvancedTable
       const mappedTables: AdvancedTable[] = (tavoliData || []).map(tavolo => ({
         id: tavolo.id.toString(),
         name: tavolo.nome_tavolo || `Tavolo ${tavolo.id}`,
@@ -50,6 +50,7 @@ export const useSupabaseTables = () => {
         y: 150 + Math.floor(parseInt(tavolo.id.toString()) / 3) * 150, // Distribuzione verticale
         assignedGuests: [], // Sarà gestito dal sistema
         user_id: user.id,
+        lato: (tavolo.lato as 'sposo' | 'sposa' | 'centro') || 'centro', // Mappa il lato dal DB
         created_at: tavolo.created_at
       }));
 
