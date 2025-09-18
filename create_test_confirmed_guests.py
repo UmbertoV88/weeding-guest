@@ -46,9 +46,7 @@ else:
 # Create test invitation unit first
 print("\n2. Creating test invitation unit...")
 unita_invito_data = {
-    'id': str(uuid.uuid4()),
     'user_id': TEST_USER_ID,
-    'nome_principale': 'Test Family',
     'created_at': '2024-01-15T10:00:00Z'
 }
 
