@@ -113,6 +113,7 @@ const TablePlanner: React.FC = () => {
   } = useSupabaseTables();
   
   const [guests, setGuests] = useState(confirmedGuests);
+  const [filteredGuests, setFilteredGuests] = useState(confirmedGuests);
   // Usa direttamente i tavoli dal database invece dello stato locale per evitare problemi di sincronizzazione
   const tables = dbTables;
   const [venue, setVenue] = useState<Venue>(mockVenue);
