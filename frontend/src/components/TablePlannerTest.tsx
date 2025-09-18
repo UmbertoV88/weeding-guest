@@ -6,6 +6,7 @@ import { Users, Layout, Settings, Lightbulb } from 'lucide-react';
 import AdvancedGuestFilters from './AdvancedGuestFilters';
 import SmartTableSuggestions from './SmartTableSuggestions';
 import TableStatsDashboard from './TableStatsDashboard';
+import NotificationDemo from './NotificationDemo';
 import { AdvancedTable, TableGuest } from '@/types/table';
 
 // Mock data per testing
