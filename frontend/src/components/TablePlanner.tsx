@@ -448,12 +448,14 @@ const TablePlanner: React.FC = () => {
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="secondary" className="bg-green-50 text-green-700 border-green-200">
-                      ✅ {guests.length} ospiti confermati
-                    </Badge>
                     {unassignedGuests.length > 0 && (
                       <Badge variant="destructive" className="animate-pulse">
-                        {unassignedGuests.length} da assegnare
+                        {unassignedGuests.length} ospiti da assegnare
+                      </Badge>
+                    )}
+                    {guests.length > 0 && (
+                      <Badge variant="outline">
+                        {guests.length} ospiti totali
                       </Badge>
                     )}
                   </div>
