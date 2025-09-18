@@ -390,11 +390,11 @@ const TablePlanner: React.FC = () => {
                       </div>
                       <Separator />
                       <div className="space-y-2">
-                        <h4 className="font-medium text-sm">Statistiche</h4>
+                        <h4 className="font-medium text-sm">Statistiche Ospiti Confermati</h4>
                         <div className="grid grid-cols-2 gap-2 text-xs">
-                          <div className="p-2 bg-gray-50 rounded">
-                            <div className="font-medium">{guests.length}</div>
-                            <div className="text-gray-600">Ospiti totali</div>
+                          <div className="p-2 bg-green-50 rounded border border-green-200">
+                            <div className="font-medium text-green-700">{guests.length}</div>
+                            <div className="text-green-600">✅ Confermati</div>
                           </div>
                           <div className="p-2 bg-gray-50 rounded">
                             <div className="font-medium">{assignedGuests.length}</div>
@@ -404,10 +404,13 @@ const TablePlanner: React.FC = () => {
                             <div className="font-medium">{tables.length}</div>
                             <div className="text-gray-600">Tavoli</div>
                           </div>
-                          <div className="p-2 bg-gray-50 rounded">
-                            <div className="font-medium">{unassignedGuests.length}</div>
-                            <div className="text-gray-600">Da assegnare</div>
+                          <div className="p-2 bg-red-50 rounded border border-red-200">
+                            <div className="font-medium text-red-700">{unassignedGuests.length}</div>
+                            <div className="text-red-600">Da assegnare</div>
                           </div>
+                        </div>
+                        <div className="text-xs text-gray-500 bg-blue-50 p-2 rounded border border-blue-200">
+                          💡 Vengono mostrati solo gli ospiti che hanno confermato la presenza
                         </div>
                       </div>
                     </div>
