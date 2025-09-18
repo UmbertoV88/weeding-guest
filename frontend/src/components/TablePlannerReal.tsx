@@ -373,9 +373,9 @@ const TablePlannerReal: React.FC = () => {
                       <div className="space-y-2">
                         <h4 className="font-medium text-sm">Statistiche Database Reale</h4>
                         <div className="grid grid-cols-2 gap-2 text-xs">
-                          <div className="p-2 bg-green-50 rounded border border-green-200">
-                            <div className="font-medium text-green-700">{guests.length}</div>
-                            <div className="text-green-600">✅ Dal database</div>
+                          <div className="p-2 bg-gray-50 rounded">
+                            <div className="font-medium">{guests.length}</div>
+                            <div className="text-gray-600">Ospiti totali</div>
                           </div>
                           <div className="p-2 bg-gray-50 rounded">
                             <div className="font-medium">{assignedGuests.length}</div>
