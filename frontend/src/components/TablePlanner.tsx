@@ -197,20 +197,14 @@ const TablePlanner: React.FC = () => {
     ));
   }, []);
 
-  // Handle table creation
-  const handleCreateTable = useCallback((tableData: Omit<AdvancedTable, 'id' | 'user_id' | 'assignedGuests'>) => {
-    const newTable: AdvancedTable = {
-      id: `t${Date.now()}`,
-      assignedGuests: [],
-      user_id: user?.id || '',
-      ...tableData
-    };
-    setTables(prev => [...prev, newTable]);
-    toast({
-      title: "Tavolo creato",
-      description: `${newTable.name} è stato aggiunto alla pianta.`
-    });
-  }, [toast, user]);
+  // Handle table creation - Aggiornato per usare database reale
+  const handleCreateTable = useCallback(async (tableData: Omit<AdvancedTable, 'id' | 'user_id' | 'assignedGuests'>) => {
+    const newTable = await createDbTable(tableData);
+    if (newTable) {
+      // Il nuovo tavolo è già stato aggiunto allo stato dal hook
+      console.log(`✅ Tavolo creato nel database: ${newTable.name}`);
+    }
+  }, [createDbTable]);
 
   // Handle table deletion
   const handleDeleteTable = useCallback((tableId: string) => {
