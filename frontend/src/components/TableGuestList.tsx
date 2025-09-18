@@ -68,11 +68,7 @@ const TableGuestList: React.FC<TableGuestListProps> = ({
     <div className="h-full flex flex-col">
       {/* Header Stats */}
       <div className="p-4 bg-gray-50 border-b">
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 mb-3">
-          <div className="text-xs text-blue-800 font-medium text-center">
-            ✅ Solo ospiti confermati
-          </div>
-        </div>
+        {/* Header info rimosse le label di conferma */}
         <div className="grid grid-cols-2 gap-2 text-xs mb-3">
           <div className="text-center p-2 bg-white rounded shadow-sm">
             <div className="font-bold text-green-600">{assignedCount}</div>
