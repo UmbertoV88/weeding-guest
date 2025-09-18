@@ -128,12 +128,10 @@ const mockVenue: Venue = {
 };
 
 const defaultGuestCategories: string[] = [
-  "Famiglia dello sposo",
-  "Famiglia della sposa",
-  "Amici dello sposo",
-  "Amici della sposa",
-  "Colleghi",
-  "Altri invitati"
+  "Famiglia di lui",
+  "Famiglia di lei", 
+  "Amici",
+  "Colleghi"
 ];
 
 const mockTableShapes: TableShape[] = [
