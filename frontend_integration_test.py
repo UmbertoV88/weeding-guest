@@ -10,7 +10,7 @@ import sys
 import time
 
 # Configuration
-FRONTEND_URL = "https://app-showcase-26.preview.emergentagent.com"
+FRONTEND_URL = "https://guest-maestro.preview.emergentagent.com"
 SUPABASE_URL = "https://lzhyjbgelvyewsxaecsi.supabase.co"
 SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6aHlqYmdlbHZ5ZXdzeGFlY3NpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc0OTUwOTcsImV4cCI6MjA3MzA3MTA5N30.EV3qo0Z69GIs-wD7Nljs2sCJA6fAN8Kfci0McjKhCaQ"
 
