@@ -82,7 +82,7 @@ export const useSupabaseTables = () => {
         .insert({
           nome_tavolo: tableData.name,
           capacita_max: tableData.seats,
-          lato: (tableData as any).side || 'centro',
+          lato: tableData.lato || 'centro',
           user_id: user.id
         })
         .select()
