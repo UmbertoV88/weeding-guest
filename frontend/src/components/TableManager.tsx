@@ -387,6 +387,25 @@ const TableManager: React.FC<TableManagerProps> = ({
                 />
               </div>
               
+              <div>
+                <Label htmlFor="edit-table-side">Lato</Label>
+                <Select 
+                  value={editingTable.lato || 'centro'} 
+                  onValueChange={(value: 'sposo' | 'sposa' | 'centro') => 
+                    setEditingTable(prev => prev ? { ...prev, lato: value } : null)
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="sposo">Lato Sposo</SelectItem>
+                    <SelectItem value="sposa">Lato Sposa</SelectItem>
+                    <SelectItem value="centro">Centro</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="edit-table-x">Posizione X</Label>
