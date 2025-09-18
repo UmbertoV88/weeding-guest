@@ -226,21 +226,42 @@ const TablePlannerReal: React.FC = () => {
     });
   }, [toast]);
 
-  // Handle table deletion
-  const handleDeleteTable = useCallback((tableId: string) => {
+  // Handle table deletion request - Apre il modal di conferma
+  const handleDeleteTableRequest = useCallback((tableId: string) => {
+    const tableToDelete = tables.find(t => t.id === tableId);
+    if (tableToDelete) {
+      setTableToDelete(tableToDelete);
+      setIsDeleteDialogOpen(true);
+    }
+  }, [tables]);
+
+  // Handle confirmed table deletion
+  const handleConfirmDeleteTable = useCallback(() => {
+    if (!tableToDelete) return;
+
     setGuests(prev => prev.map(guest => 
-      guest.tableId === tableId 
+      guest.tableId === tableToDelete.id 
         ? { ...guest, tableId: undefined, seatNumber: undefined }
         : guest
     ));
     
-    setTables(prev => prev.filter(table => table.id !== tableId));
+    setTables(prev => prev.filter(table => table.id !== tableToDelete.id));
     
     toast({
       title: "Tavolo eliminato",
       description: "Il tavolo è stato rimosso dalla pianta."
     });
-  }, [toast]);
+
+    // Chiudi il dialog
+    setIsDeleteDialogOpen(false);
+    setTableToDelete(null);
+  }, [tableToDelete, toast]);
+
+  // Handle cancel deletion
+  const handleCancelDeleteTable = useCallback(() => {
+    setIsDeleteDialogOpen(false);
+    setTableToDelete(null);
+  }, []);
 
   // Export seating chart
   const handleExport = () => {
