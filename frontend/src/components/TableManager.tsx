@@ -49,7 +49,8 @@ const TableManager: React.FC<TableManagerProps> = ({
     shape: 'round',
     seats: 6,
     x: 300,
-    y: 200
+    y: 200,
+    lato: 'centro'
   });
 
   // Handle create table
