@@ -220,6 +220,30 @@ frontend:
         agent: "testing"
         comment: "✅ HOOK WORKING PERFECTLY: Successfully connects to Supabase, executes correct query (SELECT * FROM invitati WHERE confermato = TRUE), handles authentication, maps data to TableGuest interface correctly. Returns empty array because database has no confirmed guests, which is correct behavior. All error handling and loading states implemented properly."
 
+  - task: "Create Supabase hook for real tables"
+    implemented: true
+    working: "NA"
+    file: "frontend/src/hooks/useSupabaseTables.ts"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Created hook that queries tavoli table with user_id filter and provides CRUD operations including delete"
+
+  - task: "Fix table deletion functionality"
+    implemented: true
+    working: "NA"
+    file: "frontend/src/components/TablePlanner.tsx"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: "Updated table deletion to work with real database, includes confirmation dialog and guest removal"
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
