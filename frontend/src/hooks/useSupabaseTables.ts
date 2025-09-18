@@ -40,19 +40,17 @@ export const useSupabaseTables = () => {
         throw queryError;
       }
 
-      // Mappa i dati dal database al formato AdvancedTable
+      // Mappa i dati dal database al formato AdvancedTable (RIMOSSE PROPRIETÀ NON STANDARD)
       const mappedTables: AdvancedTable[] = (tavoliData || []).map(tavolo => ({
         id: tavolo.id.toString(),
         name: tavolo.nome_tavolo || `Tavolo ${tavolo.id}`,
-        shape: 'round' as const, // Default shape, può essere esteso
+        shape: 'round' as const, // Default shape
         seats: tavolo.capacita_max,
-        x: 300 + (parseInt(tavolo.id.toString()) * 50), // Posizione di default
+        x: 300 + (parseInt(tavolo.id.toString()) * 50), // Posizione visibile
         y: 200 + (parseInt(tavolo.id.toString()) * 30),
         assignedGuests: [], // Sarà gestito dal sistema
         user_id: user.id,
-        created_at: tavolo.created_at,
-        // Mappiamo il campo "lato" se necessario
-        side: tavolo.lato || undefined
+        created_at: tavolo.created_at
       }));
 
       setTables(mappedTables);
