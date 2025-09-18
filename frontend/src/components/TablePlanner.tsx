@@ -325,7 +325,7 @@ const TablePlanner: React.FC = () => {
                     <TableGuestList
                       guests={guests}
                       tables={tables}
-                      categories={mockGuestCategories}
+                      categories={defaultGuestCategories}
                       onGuestAssignment={handleGuestAssignment}
                       selectedGuest={selectedGuest}
                       setSelectedGuest={setSelectedGuest}
