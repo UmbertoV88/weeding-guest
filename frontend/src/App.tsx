@@ -15,6 +15,7 @@ import DatabaseSchemaFix from "./components/DatabaseSchemaFix";
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
 import QRLanding from "./pages/QRLanding";
+import QRManager from "./pages/QRManager";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
