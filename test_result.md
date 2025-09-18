@@ -202,17 +202,17 @@ frontend:
         agent: "main"
         comment: "Supporting components for guest and table management"
 
-  - task: "Integrate with Supabase and existing auth"
-    implemented: false
+  - task: "Create Supabase hook for confirmed guests"
+    implemented: true
     working: "NA"
-    file: "frontend/src/hooks/useTables.ts"
+    file: "frontend/src/hooks/useSupabaseConfirmedGuests.ts"
     stuck_count: 0
-    priority: "high"
-    needs_retesting: false
+    priority: "critical"
+    needs_retesting: true
     status_history:
       - working: "NA"
         agent: "main"
-        comment: "Replace mock data with Supabase integration"
+        comment: "Created hook that queries invitati table with confermato = TRUE and maps to TableGuest interface"
 
 metadata:
   created_by: "main_agent"
