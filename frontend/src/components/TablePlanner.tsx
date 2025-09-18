@@ -16,7 +16,7 @@ import TableGuestList from './TableGuestList';
 import TableManager from './TableManager';
 import { AdvancedTable, Venue, TableGuest, GuestCategory, TableShape } from '@/types/table';
 
-// Mock data for initial implementation
+// Mock data for initial implementation - SOLO OSPITI CONFERMATI
 const mockGuests: TableGuest[] = [
   {
     id: "g1",
@@ -26,7 +26,8 @@ const mockGuests: TableGuest[] = [
     dietaryRestrictions: "Vegetariano",
     tableId: undefined,
     seatNumber: undefined,
-    user_id: ""
+    user_id: "",
+    confermato: true // ✅ Confermato
   },
   {
     id: "g2",
@@ -36,7 +37,8 @@ const mockGuests: TableGuest[] = [
     dietaryRestrictions: "Senza glutine",
     tableId: undefined,
     seatNumber: undefined,
-    user_id: ""
+    user_id: "",
+    confermato: true // ✅ Confermato
   },
   {
     id: "g3",
@@ -46,7 +48,8 @@ const mockGuests: TableGuest[] = [
     dietaryRestrictions: undefined,
     tableId: "t1",
     seatNumber: 1,
-    user_id: ""
+    user_id: "",
+    confermato: true // ✅ Confermato
   },
   {
     id: "g4",
@@ -56,7 +59,8 @@ const mockGuests: TableGuest[] = [
     dietaryRestrictions: undefined,
     tableId: "t1",
     seatNumber: 2,
-    user_id: ""
+    user_id: "",
+    confermato: true // ✅ Confermato
   },
   {
     id: "g5",
@@ -66,7 +70,8 @@ const mockGuests: TableGuest[] = [
     dietaryRestrictions: undefined,
     tableId: "t1",
     seatNumber: 3,
-    user_id: ""
+    user_id: "",
+    confermato: true // ✅ Confermato
   },
   {
     id: "g6",
@@ -76,7 +81,30 @@ const mockGuests: TableGuest[] = [
     dietaryRestrictions: "Vegano",
     tableId: undefined,
     seatNumber: undefined,
-    user_id: ""
+    user_id: "",
+    confermato: true // ✅ Confermato
+  },
+  {
+    id: "g7",
+    name: "Roberto Conti",
+    email: "roberto.conti@email.com",
+    category: "Colleghi",
+    dietaryRestrictions: undefined,
+    tableId: undefined,
+    seatNumber: undefined,
+    user_id: "",
+    confermato: true // ✅ Confermato
+  },
+  {
+    id: "g8",
+    name: "Silvia Martini",
+    email: "silvia.martini@email.com",
+    category: "Famiglia della sposa",
+    dietaryRestrictions: "Intollerante al lattosio",
+    tableId: "t2",
+    seatNumber: 1,
+    user_id: "",
+    confermato: true // ✅ Confermato
   }
 ];
 
