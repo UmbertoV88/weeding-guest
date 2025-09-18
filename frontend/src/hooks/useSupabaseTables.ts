@@ -131,7 +131,7 @@ export const useSupabaseTables = () => {
       
       if (updates.name !== undefined) dbUpdates.nome_tavolo = updates.name;
       if (updates.seats !== undefined) dbUpdates.capacita_max = updates.seats;
-      if ((updates as any).side !== undefined) dbUpdates.lato = (updates as any).side;
+      if (updates.lato !== undefined) dbUpdates.lato = updates.lato;
 
       // Aggiorna nel database solo se ci sono campi da aggiornare per il DB
       if (Object.keys(dbUpdates).length > 0) {
