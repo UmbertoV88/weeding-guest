@@ -10,7 +10,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import AdvancedGuestFilters from './AdvancedGuestFilters';
 import SmartTableSuggestions from './SmartTableSuggestions';
 import TableStatsDashboard from './TableStatsDashboard';
-import { Plus, Users, Layout, Settings, Download, Eye, ArrowLeft, Loader2, Trash2 } from 'lucide-react';
+import { Plus, Users, Layout, Settings, Download, Eye, ArrowLeft, Loader2, Trash2, Lightbulb } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
