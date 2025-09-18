@@ -274,7 +274,7 @@ const TablePlanner: React.FC = () => {
               </Button>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Piano Tavoli Avanzato</h1>
-                <p className="text-gray-600 mt-1">Organizza la disposizione degli ospiti con drag & drop</p>
+                <p className="text-gray-600 mt-1">Organizza la disposizione degli ospiti confermati dal database</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
