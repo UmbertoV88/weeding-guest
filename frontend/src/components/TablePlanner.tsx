@@ -215,27 +215,42 @@ const TablePlanner: React.FC = () => {
     }
   }, [createDbTable]);
 
-  // Handle table deletion - Aggiornato per usare database reale
-  const handleDeleteTable = useCallback(async (tableId: string) => {
-    const confirmDelete = window.confirm(
-      'Sei sicuro di voler eliminare questo tavolo dal database? Gli ospiti assegnati verranno rimossi.'
-    );
-    
-    if (!confirmDelete) return;
+  // Handle table deletion request - Apre il modal di conferma
+  const handleDeleteTableRequest = useCallback((tableId: string) => {
+    const tableToDelete = tables.find(t => t.id === tableId);
+    if (tableToDelete) {
+      setTableToDelete(tableToDelete);
+      setIsDeleteDialogOpen(true);
+    }
+  }, [tables]);
+
+  // Handle confirmed table deletion
+  const handleConfirmDeleteTable = useCallback(async () => {
+    if (!tableToDelete) return;
 
     // Remove guests from deleted table
     setGuests(prev => prev.map(guest => 
-      guest.tableId === tableId 
+      guest.tableId === tableToDelete.id 
         ? { ...guest, tableId: undefined, seatNumber: undefined }
         : guest
     ));
     
     // Elimina dal database
-    const success = await deleteDbTable(tableId);
+    const success = await deleteDbTable(tableToDelete.id);
     if (success) {
-      console.log(`✅ Tavolo eliminato dal database: ${tableId}`);
+      console.log(`✅ Tavolo eliminato dal database: ${tableToDelete.id}`);
     }
-  }, [deleteDbTable]);
+
+    // Chiudi il dialog
+    setIsDeleteDialogOpen(false);
+    setTableToDelete(null);
+  }, [tableToDelete, deleteDbTable]);
+
+  // Handle cancel deletion
+  const handleCancelDeleteTable = useCallback(() => {
+    setIsDeleteDialogOpen(false);
+    setTableToDelete(null);
+  }, []);
 
   // Export seating chart
   const handleExport = () => {
