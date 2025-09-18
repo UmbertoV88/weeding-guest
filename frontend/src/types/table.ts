@@ -50,6 +50,7 @@ export interface AdvancedTable {
   venue_id?: string;
   user_id: string;
   assignedGuests: string[];
+  lato?: 'sposo' | 'sposa' | 'centro'; // Lato del tavolo
   created_at?: string;
   updated_at?: string;
 }
