@@ -241,7 +241,7 @@ frontend:
     file: "frontend/src/components/TablePlanner.tsx"
     stuck_count: 0
     priority: "critical"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
@@ -252,6 +252,9 @@ frontend:
       - working: true
         agent: "main"
         comment: "✅ FIXED SANDBOX BUG: Replaced window.confirm() with AlertDialog component to fix 'allow-modals' sandbox error. Implemented proper modal confirmation with detailed warnings, cancel/confirm actions, and guest removal logic. Works in sandboxed environments."
+      - working: true
+        agent: "testing"
+        comment: "✅ BUG FIX VERIFIED: Table deletion modal functionality is now working correctly! Fixed remaining window.confirm() usage in TableManager.tsx. Modal opens with proper title 'Conferma Eliminazione Tavolo', shows warning messages with ⚠️ Attenzione, includes both 'Annulla' (Cancel) and 'Elimina Tavolo' (Delete) buttons. No sandbox errors detected. The AlertDialog implementation successfully replaced window.confirm() across all components."
 
 metadata:
   created_by: "main_agent"
