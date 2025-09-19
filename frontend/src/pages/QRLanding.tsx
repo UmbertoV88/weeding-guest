@@ -17,12 +17,13 @@ import {
   Users, 
   Phone,
   Mail,
-  UserCheck,
   Loader2,
-  Sparkles
+  Sparkles,
+  Info
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNotifications } from '@/contexts/NotificationContext';
+import { supabase } from '@/integrations/supabase/client';
 
 interface GuestInfo {
   id: string;
