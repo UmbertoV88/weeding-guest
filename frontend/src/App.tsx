@@ -52,9 +52,7 @@ const App = () => (
               <Route path="/tavoli-test" element={<TablePlannerTest />} />
               <Route path="/database-fix" element={<DatabaseSchemaFix />} />
               {/* QR Code Landing Pages */}
-              <Route path="/rsvp/:token" element={<QRLanding />} />
-              <Route path="/checkin/:token" element={<QRLanding />} />
-              <Route path="/wedding-info/:token" element={<QRLanding />} />
+              <Route path="/wedding-rsvp/:token" element={<QRLanding />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
