@@ -188,7 +188,7 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
       try {
         await navigator.share({
           title: `QR Code - ${qrData.guestName}`,
-          text: `QR Code per ${qrData.type === 'rsvp' ? 'confermare partecipazione' : qrData.type === 'checkin' ? 'check-in matrimonio' : 'info matrimonio'}`,
+          text: `QR Code per confermare partecipazione e vedere info matrimonio`,
           url: qrData.url,
         });
       } catch (error) {
@@ -209,7 +209,7 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
             <QrCode className="w-6 h-6 text-primary" />
             Sistema QR Code Matrimonio
             <Badge variant="secondary" className="ml-auto">
-              {guests.length} invitati
+              {unconfirmedGuests.length} in attesa di conferma
             </Badge>
           </CardTitle>
         </CardHeader>
@@ -225,12 +225,12 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
               <div className="text-2xl font-bold text-green-600">
                 {guests.filter(g => g.confermato).length}
               </div>
-              <div className="text-sm text-gray-600">Confermati</div>
+              <div className="text-sm text-gray-600">Già Confermati</div>
             </div>
-            <div className="text-center p-4 bg-yellow-50 rounded-lg">
-              <Calendar className="w-8 h-8 mx-auto mb-2 text-yellow-600" />
-              <div className="text-2xl font-bold text-yellow-600">
-                {guests.filter(g => !g.confermato).length}
+            <div className="text-center p-4 bg-orange-50 rounded-lg">
+              <Clock className="w-8 h-8 mx-auto mb-2 text-orange-600" />
+              <div className="text-2xl font-bold text-orange-600">
+                {unconfirmedGuests.length}
               </div>
               <div className="text-sm text-gray-600">In Attesa</div>
             </div>
