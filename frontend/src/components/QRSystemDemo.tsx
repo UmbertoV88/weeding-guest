@@ -14,7 +14,7 @@ const mockGuestsForQR: TableGuest[] = [
     tableId: "t1",
     seatNumber: 1,
     user_id: "test",
-    confermato: true // Già confermato - NON apparirà nel selettore
+    status: "confirmed" // Già confermato - NON apparirà nel selettore
   },
   {
     id: "g2",
@@ -25,7 +25,7 @@ const mockGuestsForQR: TableGuest[] = [
     tableId: undefined,
     seatNumber: undefined,
     user_id: "test",
-    confermato: false // Non confermato - apparirà nel selettore
+    status: "pending" // Non confermato - apparirà nel selettore
   },
   {
     id: "g3",
@@ -36,7 +36,7 @@ const mockGuestsForQR: TableGuest[] = [
     tableId: "t2",
     seatNumber: 2,
     user_id: "test",
-    confermato: false // Non confermato - apparirà nel selettore
+    status: "pending" // Non confermato - apparirà nel selettore
   },
   {
     id: "g4",
@@ -47,7 +47,7 @@ const mockGuestsForQR: TableGuest[] = [
     tableId: undefined,
     seatNumber: undefined,
     user_id: "test", 
-    confermato: true // Già confermato - NON apparirà nel selettore
+    status: "confirmed" // Già confermato - NON apparirà nel selettore
   },
   {
     id: "g5",
@@ -58,7 +58,7 @@ const mockGuestsForQR: TableGuest[] = [
     tableId: undefined,
     seatNumber: undefined,
     user_id: "test", 
-    confermato: false // Non confermato - apparirà nel selettore
+    status: "pending" // Non confermato - apparirà nel selettore
   }
 ];
 
