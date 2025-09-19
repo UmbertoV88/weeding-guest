@@ -324,32 +324,34 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
                 <div className="text-center">
                   <div className="bg-white p-6 rounded-lg border shadow-sm inline-block">
                     <QRCode
-                      id={`qr-${selectedGuest.id}-${qrType}`}
-                      value={generateQRData(selectedGuest, qrType).url}
+                      id={`qr-${selectedGuest.id}-wedding-rsvp`}
+                      value={generateQRData(selectedGuest).url}
                       size={200}
                       style={{ height: "auto", maxWidth: "100%", width: "100%" }}
                     />
                     <div className="mt-4 space-y-1">
                       <div className="font-semibold">{selectedGuest.name}</div>
                       <div className="text-sm text-gray-600">
-                        {qrType === 'rsvp' ? 'Conferma Partecipazione' : 
-                         qrType === 'checkin' ? 'Check-in Matrimonio' : 'Info Matrimonio'}
+                        Info Matrimonio + Conferma RSVP
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        Scansiona per vedere dettagli e confermare
                       </div>
                     </div>
                   </div>
 
                   <div className="flex justify-center gap-2 mt-4">
                     <Button
-                      onClick={() => downloadQRCode(generateQRData(selectedGuest, qrType))}
+                      onClick={() => downloadQRCode(generateQRData(selectedGuest))}
                       disabled={isGenerating}
                       className="gap-2"
                     >
                       <Download className="w-4 h-4" />
-                      Scarica
+                      Scarica PNG
                     </Button>
                     <Button
                       variant="outline"
-                      onClick={() => shareQRCode(generateQRData(selectedGuest, qrType))}
+                      onClick={() => shareQRCode(generateQRData(selectedGuest))}
                       className="gap-2"
                     >
                       <Share2 className="w-4 h-4" />
@@ -357,7 +359,7 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
                     </Button>
                     <Button
                       variant="outline"
-                      onClick={() => copyToClipboard(generateQRData(selectedGuest, qrType).url)}
+                      onClick={() => copyToClipboard(generateQRData(selectedGuest).url)}
                       className="gap-2"
                     >
                       <Copy className="w-4 h-4" />
@@ -369,6 +371,7 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
                 <div className="text-center text-gray-500 py-12">
                   <QrCode className="w-16 h-16 mx-auto mb-4 opacity-30" />
                   <p>Seleziona un invitato per generare il QR Code</p>
+                  <p className="text-sm mt-2">Il QR unifica info matrimonio e conferma RSVP</p>
                 </div>
               )}
             </div>
