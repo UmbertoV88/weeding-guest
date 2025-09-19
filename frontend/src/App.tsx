@@ -51,6 +51,7 @@ const App = () => (
               <Route path="/tavoli-demo" element={<TablePlannerDemo />} />
               <Route path="/tavoli-real" element={<TablePlannerReal />} />
               <Route path="/tavoli-test" element={<TablePlannerTest />} />
+              <Route path="/qr-demo" element={<QRSystemDemo />} />
               <Route path="/database-fix" element={<DatabaseSchemaFix />} />
               {/* QR Code Landing Pages */}
               <Route path="/wedding-rsvp/:token" element={<QRLanding />} />
