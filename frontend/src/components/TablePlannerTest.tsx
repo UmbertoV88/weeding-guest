@@ -20,7 +20,7 @@ const mockGuests: TableGuest[] = [
     tableId: "t1",
     seatNumber: 1,
     user_id: "test",
-    confermato: true
+    status: "confirmed"
   },
   {
     id: "g2",
@@ -31,7 +31,7 @@ const mockGuests: TableGuest[] = [
     tableId: undefined,
     seatNumber: undefined,
     user_id: "test",
-    confermato: true
+    status: "confirmed"
   },
   {
     id: "g3",
@@ -42,7 +42,7 @@ const mockGuests: TableGuest[] = [
     tableId: "t2",
     seatNumber: 2,
     user_id: "test",
-    confermato: true
+    status: "confirmed"
   },
   {
     id: "g4",
@@ -53,7 +53,7 @@ const mockGuests: TableGuest[] = [
     tableId: undefined,
     seatNumber: undefined,
     user_id: "test", 
-    confermato: true
+    status: "confirmed"
   }
 ];
 
