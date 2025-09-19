@@ -42,7 +42,7 @@ import { TableGuest } from '@/types/table';
 interface QRCodeData {
   guestId: string;
   guestName: string;
-  type: 'rsvp' | 'checkin' | 'info';
+  type: 'wedding-rsvp'; // Unificato: info + conferma
   weddingId?: string;
   url: string;
 }
@@ -56,7 +56,6 @@ interface QRCodeSystemProps {
     weddingId: string;
   };
   onGuestConfirm?: (guestId: string) => void;
-  onGuestCheckIn?: (guestId: string) => void;
 }
 
 const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
