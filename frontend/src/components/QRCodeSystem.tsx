@@ -242,77 +242,78 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
       <Card>
         <CardHeader>
           <CardTitle>Genera QR Code per Invitati</CardTitle>
+          <p className="text-sm text-gray-600">
+            Genera QR code per gli invitati che non hanno ancora confermato la partecipazione
+          </p>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Selezione invitato e tipo */}
+            {/* Selezione invitato */}
             <div className="space-y-4">
               <div>
-                <Label htmlFor="guest-select">Seleziona Invitato</Label>
+                <Label htmlFor="guest-select">Seleziona Invitato (Solo Non Confermati)</Label>
                 <Select onValueChange={(value) => {
-                  const guest = guests.find(g => g.id === value);
+                  const guest = unconfirmedGuests.find(g => g.id === value);
                   setSelectedGuest(guest || null);
                 }}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Scegli un invitato..." />
+                    <SelectValue placeholder={
+                      unconfirmedGuests.length > 0 
+                        ? "Scegli un invitato..." 
+                        : "Tutti gli invitati hanno già confermato"
+                    } />
                   </SelectTrigger>
                   <SelectContent>
-                    {guests.map(guest => (
-                      <SelectItem key={guest.id} value={guest.id}>
-                        <div className="flex items-center gap-2">
-                          <span>{guest.name}</span>
-                          {guest.confermato && (
-                            <CheckCircle className="w-4 h-4 text-green-500" />
-                          )}
-                        </div>
+                    {unconfirmedGuests.length === 0 ? (
+                      <SelectItem value="no-guests" disabled>
+                        Nessun invitato in attesa di conferma
                       </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Label htmlFor="qr-type">Tipo QR Code</Label>
-                <Select value={qrType} onValueChange={(value: 'rsvp' | 'checkin' | 'info') => setQrType(value)}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="rsvp">
-                      <div className="flex items-center gap-2">
-                        <Heart className="w-4 h-4 text-pink-500" />
-                        RSVP - Conferma Partecipazione
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="checkin">
-                      <div className="flex items-center gap-2">
-                        <UserCheck className="w-4 h-4 text-green-500" />
-                        Check-in Matrimonio
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="info">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-blue-500" />
-                        Info Matrimonio
-                      </div>
-                    </SelectItem>
+                    ) : (
+                      unconfirmedGuests.map(guest => (
+                        <SelectItem key={guest.id} value={guest.id}>
+                          <div className="flex items-center gap-2">
+                            <span>{guest.name}</span>
+                            <Badge variant="outline" className="text-xs">
+                              {guest.category}
+                            </Badge>
+                          </div>
+                        </SelectItem>
+                      ))
+                    )}
                   </SelectContent>
                 </Select>
               </div>
 
               {selectedGuest && (
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <h4 className="font-semibold mb-2">Anteprima Invitato:</h4>
+                <div className="p-4 bg-blue-50 rounded-lg">
+                  <h4 className="font-semibold mb-2">Invitato Selezionato:</h4>
                   <div className="space-y-1 text-sm">
                     <div><strong>Nome:</strong> {selectedGuest.name}</div>
                     <div><strong>Categoria:</strong> {selectedGuest.category}</div>
+                    <div><strong>Email:</strong> {selectedGuest.email || 'Non specificata'}</div>
                     <div>
                       <strong>Status:</strong> 
-                      <Badge variant={selectedGuest.confermato ? "default" : "secondary"} className="ml-2">
-                        {selectedGuest.confermato ? "Confermato" : "In Attesa"}
+                      <Badge variant="secondary" className="ml-2">
+                        In Attesa di Conferma
                       </Badge>
                     </div>
                   </div>
+                  <div className="mt-3 p-3 bg-white rounded border-l-4 border-blue-500">
+                    <p className="text-xs text-gray-600">
+                      <strong>📱 Funziona così:</strong> L'invitato scannerizza il QR code, 
+                      vede le info del matrimonio e può confermare la partecipazione direttamente.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {unconfirmedGuests.length === 0 && (
+                <div className="p-4 bg-green-50 rounded-lg text-center">
+                  <CheckCircle className="w-12 h-12 mx-auto mb-2 text-green-600" />
+                  <h4 className="font-semibold text-green-800 mb-1">Tutti Confermati! 🎉</h4>
+                  <p className="text-sm text-green-700">
+                    Fantastico! Tutti i tuoi invitati hanno già confermato la partecipazione.
+                  </p>
                 </div>
               )}
             </div>
