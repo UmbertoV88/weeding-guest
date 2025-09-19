@@ -127,9 +127,7 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
           ctx.fillText(`${qrData.guestName}`, canvas.width / 2, 40);
           
           ctx.font = '16px Arial';
-          const typeText = qrData.type === 'rsvp' ? 'Conferma Partecipazione' : 
-                          qrData.type === 'checkin' ? 'Check-in Matrimonio' : 'Info Matrimonio';
-          ctx.fillText(typeText, canvas.width / 2, 60);
+          ctx.fillText('Conferma Partecipazione', canvas.width / 2, 60);
           
           if (weddingInfo) {
             ctx.font = '14px Arial';
@@ -144,7 +142,7 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
               const url = URL.createObjectURL(blob);
               const a = document.createElement('a');
               a.href = url;
-              a.download = `QR_${qrData.guestName}_${qrData.type}.png`;
+              a.download = `QR_${qrData.guestName}_wedding-rsvp.png`;
               a.click();
               URL.revokeObjectURL(url);
             }
