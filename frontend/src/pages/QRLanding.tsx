@@ -95,17 +95,27 @@ const QRLanding: React.FC = () => {
     }
   }, [token, navigate]);
 
-  // Gestione RSVP
+  // Gestione RSVP con aggiornamento database
   const handleRSVPSubmit = async () => {
     if (!response || !guestInfo) return;
     
     setSubmitting(true);
     
     try {
-      // Simula API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Mock update - in realtà aggiornerebbe il database
+      // Aggiorna il database Supabase
+      const { error } = await supabase
+        .from('invitati')
+        .update({ 
+          confermato: response === 'yes',
+          // Potresti aggiungere altri campi come numero_accompagnatori, allergie, etc.
+        })
+        .eq('id', guestInfo.id);
+
+      if (error) {
+        throw error;
+      }
+
+      // Mock update aggiuntivo per dati extra (in un'app reale potresti estendere la tabella)
       const rsvpData = {
         guestId: guestInfo.id,
         guestName: guestInfo.name,
@@ -134,7 +144,10 @@ const QRLanding: React.FC = () => {
         });
       }
       
+      setShowConfirmation(true);
+      
     } catch (error) {
+      console.error('Errore aggiornamento database:', error);
       toast({
         title: "Errore",
         description: "Si è verificato un errore. Riprova più tardi.",
