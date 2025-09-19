@@ -50,9 +50,6 @@ const QRLanding: React.FC = () => {
   const { toast } = useToast();
   const { notifyGuestConfirmed, notifyGuestDeclined } = useNotifications();
   
-  // Determina il tipo dalla URL
-  const type = window.location.pathname.split('/')[1]; // 'rsvp', 'checkin', o 'wedding-info'
-  
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [guestInfo, setGuestInfo] = useState<GuestInfo | null>(null);
@@ -61,7 +58,7 @@ const QRLanding: React.FC = () => {
   const [dietaryNeeds, setDietaryNeeds] = useState('');
   const [phone, setPhone] = useState('');
   const [notes, setNotes] = useState('');
-  const [isCheckedIn, setIsCheckedIn] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   // Mock wedding info - in realtà verrebbe dal database
   const weddingInfo: WeddingInfo = {
