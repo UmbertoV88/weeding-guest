@@ -67,7 +67,7 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Filtra solo invitati NON confermati
-  const unconfirmedGuests = guests.filter(guest => !guest.confermato);
+  const unconfirmedGuests = guests.filter(guest => guest.status === "pending");
 
   // Genera URL per QR Code unificato
   const generateQRData = (guest: TableGuest): QRCodeData => {
