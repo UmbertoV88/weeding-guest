@@ -61,37 +61,27 @@ interface QRCodeSystemProps {
 const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
   guests,
   weddingInfo,
-  onGuestConfirm,
-  onGuestCheckIn
+  onGuestConfirm
 }) => {
   const { toast } = useToast();
   const [selectedGuest, setSelectedGuest] = useState<TableGuest | null>(null);
-  const [qrType, setQrType] = useState<'rsvp' | 'checkin' | 'info'>('rsvp');
   const [isGenerating, setIsGenerating] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Genera URL per QR Code
-  const generateQRData = (guest: TableGuest, type: 'rsvp' | 'checkin' | 'info'): QRCodeData => {
+  // Filtra solo invitati NON confermati
+  const unconfirmedGuests = guests.filter(guest => !guest.confermato);
+
+  // Genera URL per QR Code unificato
+  const generateQRData = (guest: TableGuest): QRCodeData => {
     const baseUrl = window.location.origin;
     const guestToken = btoa(`${guest.id}_${guest.name}_${Date.now()}`);
     
-    let url = '';
-    switch (type) {
-      case 'rsvp':
-        url = `${baseUrl}/rsvp/${guestToken}`;
-        break;
-      case 'checkin':
-        url = `${baseUrl}/checkin/${guestToken}`;
-        break;
-      case 'info':
-        url = `${baseUrl}/wedding-info/${guestToken}`;
-        break;
-    }
+    const url = `${baseUrl}/wedding-rsvp/${guestToken}`;
 
     return {
       guestId: guest.id,
       guestName: guest.name,
-      type,
+      type: 'wedding-rsvp',
       weddingId: weddingInfo?.weddingId,
       url
     };
