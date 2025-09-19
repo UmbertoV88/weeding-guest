@@ -31,10 +31,8 @@ import {
   Users, 
   Calendar, 
   MapPin,
-  Camera,
-  Scan,
   Heart,
-  UserCheck
+  Clock
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { TableGuest } from '@/types/table';
