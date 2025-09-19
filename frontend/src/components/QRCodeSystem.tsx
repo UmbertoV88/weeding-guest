@@ -380,50 +380,52 @@ const QRCodeSystem: React.FC<QRCodeSystemProps> = ({
       </Card>
 
       {/* Generazione Batch */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Generazione Batch QR Code</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap gap-2 mb-4">
-            <Button 
-              onClick={() => {
-                guests.forEach(guest => {
-                  setTimeout(() => downloadQRCode(generateQRData(guest, 'rsvp')), 100);
-                });
-                toast({
-                  title: "🎉 Generazione avviata!",
-                  description: `Generando QR code RSVP per ${guests.length} invitati`
-                });
-              }}
-              className="gap-2"
-            >
-              <Heart className="w-4 h-4" />
-              Genera tutti RSVP
-            </Button>
-            <Button 
-              variant="outline"
-              onClick={() => {
-                guests.filter(g => g.confermato).forEach(guest => {
-                  setTimeout(() => downloadQRCode(generateQRData(guest, 'checkin')), 100);
-                });
-                toast({
-                  title: "🎉 Generazione avviata!",
-                  description: `Generando QR code Check-in per invitati confermati`
-                });
-              }}
-              className="gap-2"
-            >
-              <UserCheck className="w-4 h-4" />
-              Genera Check-in per Confermati
-            </Button>
-          </div>
-          <p className="text-sm text-gray-600">
-            💡 <strong>Suggerimento:</strong> Usa i QR code RSVP per le partecipazioni di nozze, 
-            e i QR code Check-in per il giorno del matrimonio.
-          </p>
-        </CardContent>
-      </Card>
+      {unconfirmedGuests.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Generazione Batch QR Code</CardTitle>
+            <p className="text-sm text-gray-600">
+              Genera QR code per tutti gli invitati che non hanno ancora confermato
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex flex-wrap gap-3">
+                <Button 
+                  onClick={() => {
+                    unconfirmedGuests.forEach((guest, index) => {
+                      setTimeout(() => downloadQRCode(generateQRData(guest)), index * 500);
+                    });
+                    toast({
+                      title: "🎉 Generazione avviata!",
+                      description: `Generando QR code per ${unconfirmedGuests.length} invitati non confermati`
+                    });
+                  }}
+                  className="gap-2 bg-primary hover:bg-primary/90"
+                >
+                  <QrCode className="w-4 h-4" />
+                  Genera Tutti i QR ({unconfirmedGuests.length})
+                </Button>
+                
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                  <span>{unconfirmedGuests.length} invitati in attesa</span>
+                </div>
+              </div>
+              
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h4 className="font-semibold text-blue-800 mb-2">💡 Come Utilizzare i QR Code:</h4>
+                <div className="text-sm text-blue-700 space-y-1">
+                  <div>• <strong>Stampa:</strong> Includi il QR nelle partecipazioni cartacee</div>
+                  <div>• <strong>Digitale:</strong> Invia via WhatsApp, email o social</div>
+                  <div>• <strong>Invitato:</strong> Scansiona → Vede info matrimonio → Conferma partecipazione</div>
+                  <div>• <strong>Tu ricevi:</strong> Notifica automatica quando confermano!</div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };
