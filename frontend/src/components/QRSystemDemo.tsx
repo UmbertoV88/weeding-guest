@@ -97,7 +97,7 @@ const QRSystemDemo: React.FC = () => {
               <div>
                 <h4 className="font-semibold mb-2 text-green-800">✅ Già Confermati (non nel QR selector):</h4>
                 <ul className="space-y-1 text-sm">
-                  {mockGuestsForQR.filter(g => g.confermato).map(guest => (
+                  {mockGuestsForQR.filter(g => g.status === "confirmed").map(guest => (
                     <li key={guest.id} className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span>{guest.name} - {guest.category}</span>
@@ -109,7 +109,7 @@ const QRSystemDemo: React.FC = () => {
               <div>
                 <h4 className="font-semibold mb-2 text-orange-800">⏳ In Attesa (apparirà nel QR selector):</h4>
                 <ul className="space-y-1 text-sm">
-                  {mockGuestsForQR.filter(g => !g.confermato).map(guest => (
+                  {mockGuestsForQR.filter(g => g.status === "pending").map(guest => (
                     <li key={guest.id} className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                       <span>{guest.name} - {guest.category}</span>
